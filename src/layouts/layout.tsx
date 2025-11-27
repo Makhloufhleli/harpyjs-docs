@@ -51,14 +51,14 @@ export default function DefaultLayout({ children, meta }: JsxLayoutProps) {
       </head>
       <body className="bg-slate-50">
         {/* Header */}
-        <header className="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-50">
+        <header className="bg-linear-to-r from-slate-900 via-purple-950 to-slate-900 border-b border-purple-900 shadow-lg sticky top-0 z-50 backdrop-blur-sm">
           <div className="container mx-auto max-w-6xl px-4">
             <div className="flex items-center justify-between h-16">
               <a href="/" className="flex items-center gap-2 group">
                 <span className="text-3xl group-hover:scale-110 transition-transform">
                   🦅
                 </span>
-                <span className="text-xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+                <span className="text-xl font-bold bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
                   Harpy
                 </span>
               </a>
