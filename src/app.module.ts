@@ -4,6 +4,7 @@ import { HomeModule } from './features/home/home.module';
 import { AboutModule } from './features/about/about.module';
 import { AuthModule } from './features/auth/auth.module';
 import { DashboardModule } from './features/dashboard/dashboard.module';
+import { DocsModule } from './features/docs/docs.module';
 import { i18nConfig } from './i18n/i18n.config';
 
 @Module({
@@ -11,6 +12,7 @@ import { i18nConfig } from './i18n/i18n.config';
     // Configure I18n module
     I18nModule.forRoot(i18nConfig),
     HomeModule,
+    DocsModule,
     AboutModule,
     AuthModule,
     DashboardModule,

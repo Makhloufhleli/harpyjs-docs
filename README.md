@@ -1,98 +1,145 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+  <span style="font-size: 120px;">🦅</span>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+<h1 align="center">Harpy.js Documentation Website</h1>
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+<p align="center">Official documentation website for <strong>Harpy.js</strong> - a full-stack framework that brings React SSR to the NestJS ecosystem.</p>
 
-## Description
+> **⚠️ Beta Version**: This documentation and the Harpy.js framework are currently in beta. Features may change, and you might encounter bugs.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 🚀 About
 
-## Project setup
+This website provides comprehensive documentation for Harpy.js, including:
 
-```bash
-$ pnpm install
-```
+- **Getting Started**: Installation and quick start guides
+- **Core Concepts**: Architecture, SSR, and hydration
+- **Features**: Detailed feature documentation
+- **Guides**: Step-by-step tutorials and best practices
 
-## Compile and run the project
+## 🛠️ Tech Stack
+
+- **Framework**: [Harpy.js](https://github.com/Makhloufhleli/harpy.js) (NestJS 11 + React 19 SSR)
+- **Runtime**: Node.js with Fastify
+- **Styling**: Tailwind CSS
+- **Language**: TypeScript
+
+## 📦 Installation
 
 ```bash
-# development
-$ pnpm run start
+# Install dependencies
+pnpm install
 
-# watch mode
-$ pnpm run start:dev
+# Start development server
+pnpm dev
 
-# production mode
-$ pnpm run start:prod
+# Build for production
+pnpm build
+
+# Start production server
+pnpm start
 ```
 
-## Run tests
+## 🏗️ Project Structure
 
-```bash
-# unit tests
-$ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
+```
+apps/harpyjs-docs/
+├── src/
+│   ├── features/          # Feature modules
+│   │   ├── home/          # Homepage
+│   │   │   ├── views/
+│   │   │   ├── home.controller.ts
+│   │   │   ├── home.service.ts
+│   │   │   └── home.module.ts
+│   │   └── docs/          # Documentation pages
+│   │       ├── views/
+│   │       ├── docs.controller.ts
+│   │       ├── docs.service.ts
+│   │       └── docs.module.ts
+│   ├── layouts/           # Layout components
+│   │   ├── layout.tsx           # Default layout (homepage)
+│   │   └── dashboard-layout.tsx # Docs layout (sidebar + header)
+│   ├── i18n/             # Internationalization
+│   ├── assets/           # Static assets and styles
+│   ├── app.module.ts     # Root module
+│   └── main.ts           # Application entry point
+├── postcss.config.js
+├── tailwind.config.js
+└── package.json
 ```
 
-## Deployment
+## 🎨 Features
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+### Homepage
+- Hero section with gradient background
+- Feature cards highlighting key capabilities
+- Quick start guide
+- Beta status badge
+- Responsive design
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### Documentation
+- Sticky sidebar navigation
+- Sticky header
+- Comprehensive content sections
+- Code examples with syntax highlighting
+- Beta warning notice
+- Mobile-responsive layout
 
-```bash
-$ pnpm install -g @nestjs/mau
-$ mau deploy
-```
+### Layouts
+- **Default Layout**: Used by homepage with gradient footer
+- **Dashboard Layout**: Used by docs with sidebar navigation and light footer
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+## 🔧 Development
 
-## Resources
+### Adding New Documentation Sections
 
-Check out a few resources that may come in handy when working with NestJS:
+1. Update `docs.service.ts` to add new navigation items
+2. Add section content in `docspage.tsx`
+3. Update navigation structure if needed
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+### Styling
 
-## Support
+The project uses Tailwind CSS with a custom configuration:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+- Primary gradient: `from-slate-900 via-purple-900 to-slate-900`
+- Accent colors: Amber/Orange for CTAs and highlights
+- Typography: Clean, modern fonts with good contrast
 
-## Stay in touch
+### Performance
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+The application leverages Harpy.js SSR capabilities:
+- Server-side rendering: 1-7ms render times
+- Automatic client-side hydration for interactive components
+- Optimized asset delivery
 
-## License
+## 📝 SEO
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+Both routes include comprehensive metadata:
+- Page titles and descriptions
+- Canonical URLs
+- OpenGraph tags for social media
+- Twitter Card metadata
+
+## 🤝 Contributing
+
+We welcome contributions! To contribute:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feat/your-feature`)
+3. Make your changes
+4. Commit with conventional commits (`git commit -m "feat: add feature"`)
+5. Push to your branch (`git push origin feat/your-feature`)
+6. Open a Pull Request
+
+## 👨‍💻 Author
+
+Built with ❤️ by [Makhlouf Helali](https://github.com/Makhloufhleli)
+
+## 🔗 Links
+
+- **Harpy.js Framework**: [github.com/Makhloufhleli/harpy.js](https://github.com/Makhloufhleli/harpy.js)
+- **Documentation**: [github.com/Makhloufhleli/harpyjs-docs](https://github.com/Makhloufhleli/harpyjs-docs)
+
+---
+
+**Note**: This is the documentation website repository. For the actual Harpy.js framework, please visit the main repository.
