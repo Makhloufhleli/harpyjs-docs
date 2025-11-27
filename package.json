@@ -21,7 +21,8 @@
     "build:hydration": "harpy build-hydration",
     "auto-wrap": "harpy auto-wrap",
     "build:styles": "harpy build-styles",
-    "dev": "harpy dev"
+    "dev": "harpy dev",
+    "vercel:deploy": "pnpm build && vercel --prod"
   },
   "dependencies": {
     "@fastify/cookie": "^11.0.0",
