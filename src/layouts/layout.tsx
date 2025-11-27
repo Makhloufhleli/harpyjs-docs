@@ -103,7 +103,7 @@ export default function DefaultLayout({ children, meta }: JsxLayoutProps) {
         </main>
 
         {/* Footer */}
-        <footer className="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white py-12">
+        <footer className="bg-gradient-to-bl from-slate-900 via-purple-900 to-slate-900 text-white py-12 border-t border-slate-700">
           <div className="container mx-auto max-w-6xl px-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
               <div>
@@ -180,6 +180,15 @@ export default function DefaultLayout({ children, meta }: JsxLayoutProps) {
             </div>
           </div>
         </footer>
+        <script type="text/javascript">
+          {`
+            (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "ucnhc3hgpk");
+          `}
+        </script>
       </body>
     </html>
   );
