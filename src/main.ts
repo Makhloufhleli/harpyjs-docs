@@ -10,6 +10,7 @@ import DefaultLayout from './layouts/layout';
 import * as path from 'path';
 import fastifyStatic from '@fastify/static';
 import fastifyCookie from '@fastify/cookie';
+import { inject } from '@vercel/analytics';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -22,16 +23,18 @@ async function bootstrap() {
 
   // Register Fastify plugins
   const fastify = app.getHttpAdapter().getInstance();
-  
+
   // Register cookie support for i18n
   await fastify.register(fastifyCookie);
-  
+
   // Register static file serving
   await fastify.register(fastifyStatic, {
     root: path.join(process.cwd(), 'dist'),
     prefix: '/',
     decorateReply: false,
   });
+
+  inject();
 
   await app.listen({
     port: process.env.PORT ? parseInt(process.env.PORT) : 3000,
