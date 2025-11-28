@@ -15,13 +15,13 @@ export class HeroController {
         'Harpy.js - Modern Full-Stack NestJS Framework with React SSR (BETA)',
       description:
         'Harpy.js is a next-gen full-stack framework built on NestJS with server-side React rendering, automatic client-side hydration, 1–7ms page loads, and SEO-optimized performance. Build scalable web applications effortlessly. Beta available now.',
-      canonical: 'https://harpyjs.com',
+      canonical: 'https://www.harpyjs.org/',
       openGraph: {
         title: 'Harpy.js - Modern Full-Stack NestJS Framework with React SSR',
         description:
           'Create high-performance, SEO-friendly full-stack apps with Harpy.js. Powered by NestJS + React SSR, automatic hydration, and ultra-fast rendering. Join the beta today!',
         type: 'website',
-        url: 'https://harpyjs.com',
+        url: 'https://www.harpyjs.org/',
       },
       twitter: {
         card: 'summary_large_image',
