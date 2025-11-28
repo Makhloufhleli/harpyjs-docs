@@ -13,9 +13,23 @@ export class RoutingDocsController {
   @JsxRender(RoutingPage, {
     layout: DashboardLayout,
     meta: {
-      title: 'Routing - Harpy.js Documentation',
+      title: 'Routing Guide - Harpy.js Framework (BETA)',
       description:
-        'Learn how to implement routing in Harpy.js using NestJS controllers and decorators. Understand how NestJS routing automatically maps to your application routes.',
+        'Comprehensive guide to routing in Harpy.js. Learn how to configure client-side and server-side routes, dynamic parameters, nested routes, and React SSR integration. Beta version.',
+      canonical: 'https://www.harpyjs.org/docs/routing',
+      openGraph: {
+        title: 'Harpy.js Routing Guide - Full-Stack NestJS + React SSR',
+        description:
+          'Step-by-step guide to set up routing in Harpy.js applications. Covers dynamic routes, nested routes, client-side navigation, SSR, and hydration. Beta release.',
+        type: 'website',
+        url: 'https://www.harpyjs.org/docs/routing',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: 'Harpy.js Routing Guide',
+        description:
+          'Complete guide to routing in Harpy.js with NestJS + React SSR. Learn dynamic routing, nested routes, client-side navigation, and SSR integration. Beta version.',
+      },
     },
   })
   async routing() {
