@@ -9,7 +9,8 @@ export default function DefaultLayout({
   const description =
     meta?.description ??
     'A powerful NestJS + React framework with automatic hydration. Built for speed, precision, and adaptability.';
-  const canonical = meta?.canonical ?? 'https://example.com';
+  const canonical =
+    meta?.canonical ?? 'https://github.com/Makhloufhleli/harpy.js';
 
   const og = meta?.openGraph ?? {};
   const twitter = meta?.twitter ?? {};
@@ -20,6 +21,10 @@ export default function DefaultLayout({
         <title>{title}</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          name="keywords"
+          content="HarpyJS, JavaScript library, JS framework, web development, full-stack development, open source, Performance, NestJS, developer tools, web apps"
+        />
         <link rel="stylesheet" href="/styles/styles.css" />
 
         <meta name="description" content={description} />
