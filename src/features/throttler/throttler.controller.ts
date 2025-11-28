@@ -17,22 +17,22 @@ export class ThrottlerController {
   @JsxRender(ThrottlerDocsPage, {
     layout: DashboardLayout,
     meta: {
-      title: 'Rate Limiting - Harpy.js Documentation',
+      title: 'Rate Limiting Guide - Harpy.js Framework (BETA)',
       description:
-        'Learn how to implement rate limiting in Harpy.js applications using @nestjs/throttler. Protect your application from abuse with configurable request limits.',
-      canonical: 'https://github.com/Makhloufhleli/harpyjs-docs/docs/throttler',
+        'Learn how to implement rate limiting (throttling) in Harpy.js. Full-stack guide for NestJS + React SSR covering request limits, protection against abuse, and best practices. Beta version.',
+      canonical: 'https://www.harpyjs.org/docs/throttler',
       openGraph: {
-        title: 'Rate Limiting - Harpy.js Documentation',
+        title: 'Harpy.js Rate Limiting Guide - Full-Stack NestJS + React SSR',
         description:
-          'Complete guide to implementing rate limiting in Harpy.js applications.',
+          'Step-by-step guide to set up rate limiting (throttling) in Harpy.js applications. Covers request limits, preventing abuse, SSR integration, and best practices. Beta release.',
         type: 'website',
-        url: 'https://github.com/Makhloufhleli/harpyjs-docs/docs/throttler',
+        url: 'https://www.harpyjs.org/docs/throttler',
       },
       twitter: {
         card: 'summary_large_image',
-        title: 'Rate Limiting - Harpy.js Documentation',
+        title: 'Harpy.js Rate Limiting Guide',
         description:
-          'Complete guide to implementing rate limiting in Harpy.js applications.',
+          'Complete guide to implementing rate limiting (throttling) in Harpy.js with NestJS + React SSR. Learn request limits, protection against abuse, and best practices. Beta version.',
       },
     },
   })

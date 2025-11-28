@@ -13,22 +13,22 @@ export class InstallationController {
   @JsxRender(DocsPage, {
     layout: DashboardLayout,
     meta: {
-      title: 'Documentation - Harpy.js Framework (BETA)',
+      title: 'Installation Guide - Harpy.js Framework (BETA)',
       description:
-        'Complete documentation for Harpy.js - Learn how to build full-stack applications with NestJS + React SSR. Includes installation guide, architecture overview, JSX rendering, client hydration, i18n support, and deployment instructions. Beta version.',
-      canonical: 'https://github.com/Makhloufhleli/harpyjs-docs',
+        'Step-by-step installation guide for Harpy.js. Learn how to set up full-stack applications with NestJS and React SSR, including hydration, routing, i18n, and deployment. Beta version.',
+      canonical: 'https://www.harpyjs.org/docs/installation',
       openGraph: {
-        title: 'Harpy.js Documentation - Full-Stack NestJS + React SSR',
+        title: 'Harpy.js Installation Guide - Full-Stack NestJS + React SSR',
         description:
-          'Learn how to build powerful full-stack applications with Harpy.js. Complete guides on SSR, hydration, routing, and more.',
+          'Follow our comprehensive guide to install Harpy.js and start building high-performance full-stack apps with NestJS and React SSR. Beta release.',
         type: 'website',
-        url: 'https://github.com/Makhloufhleli/harpyjs-docs',
+        url: 'https://www.harpyjs.org/docs/installation',
       },
       twitter: {
         card: 'summary_large_image',
-        title: 'Harpy.js Documentation',
+        title: 'Harpy.js Installation Guide',
         description:
-          'Complete documentation for building full-stack apps with NestJS + React SSR',
+          'Complete step-by-step guide to install Harpy.js and build full-stack apps with NestJS + React SSR. Beta version available.',
       },
     },
   })

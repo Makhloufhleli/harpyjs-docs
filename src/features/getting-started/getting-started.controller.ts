@@ -13,22 +13,23 @@ export class GettingStartedController {
   @JsxRender(DocsPage, {
     layout: DashboardLayout,
     meta: {
-      title: 'Documentation - Harpy.js Framework (BETA)',
+      title: 'Harpy.js Documentation - Full-Stack NestJS + React SSR (BETA)',
       description:
-        'Complete documentation for Harpy.js - Learn how to build full-stack applications with NestJS + React SSR. Includes installation guide, architecture overview, JSX rendering, client hydration, i18n support, and deployment instructions. Beta version.',
-      canonical: 'https://github.com/Makhloufhleli/harpyjs-docs',
+        'Explore the complete Harpy.js documentation to build full-stack applications with NestJS and React SSR. Includes installation, architecture, JSX rendering, client-side hydration, i18n, routing, and deployment guides. Beta version.',
+      canonical: 'https://harpyjs.com/docs',
       openGraph: {
-        title: 'Harpy.js Documentation - Full-Stack NestJS + React SSR',
+        title:
+          'Harpy.js Documentation - Build Full-Stack Apps with NestJS + React SSR',
         description:
-          'Learn how to build powerful full-stack applications with Harpy.js. Complete guides on SSR, hydration, routing, and more.',
+          'Master Harpy.js with comprehensive guides on SSR, client hydration, routing, i18n, and deployment. Build scalable, high-performance full-stack applications. Beta release.',
         type: 'website',
-        url: 'https://github.com/Makhloufhleli/harpyjs-docs',
+        url: 'https://harpyjs.com/docs',
       },
       twitter: {
         card: 'summary_large_image',
-        title: 'Harpy.js Documentation',
+        title: 'Harpy.js Documentation - Full-Stack NestJS + React SSR',
         description:
-          'Complete documentation for building full-stack apps with NestJS + React SSR',
+          'Complete guides to building full-stack apps with Harpy.js. Learn SSR, client-side hydration, routing, i18n, and deployment. Beta available.',
       },
     },
   })

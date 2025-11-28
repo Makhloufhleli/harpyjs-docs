@@ -10,25 +10,27 @@ export class HeroController {
 
   @Get()
   @JsxRender(HeroPage, {
-    meta: () => ({
-      title: 'Harpy.js - Full-Stack NestJS Framework with React SSR (BETA)',
+    meta: {
+      title:
+        'Harpy.js - Modern Full-Stack NestJS Framework with React SSR (BETA)',
       description:
-        'Build powerful full-stack applications with Harpy.js - a modern framework leveraging NestJS ecosystem with server-side React rendering, automatic client-side hydration, and 1-7ms render times. Currently in beta.',
-      canonical: 'https://github.com/Makhloufhleli/harpyjs-docs',
+        'Harpy.js is a next-gen full-stack framework built on NestJS with server-side React rendering, automatic client-side hydration, 1–7ms page loads, and SEO-optimized performance. Build scalable web applications effortlessly. Beta available now.',
+      canonical: 'https://harpyjs.com',
       openGraph: {
-        title: 'Harpy.js - Full-Stack NestJS Framework with React SSR',
+        title: 'Harpy.js - Modern Full-Stack NestJS Framework with React SSR',
         description:
-          'Build powerful full-stack applications with Harpy.js - NestJS + React SSR with automatic hydration and lightning-fast performance.',
+          'Create high-performance, SEO-friendly full-stack apps with Harpy.js. Powered by NestJS + React SSR, automatic hydration, and ultra-fast rendering. Join the beta today!',
         type: 'website',
-        url: 'https://github.com/Makhloufhleli/harpyjs-docs',
+        url: 'https://harpyjs.com',
       },
       twitter: {
         card: 'summary_large_image',
-        title: 'Harpy.js - Full-Stack NestJS Framework with React SSR',
+        title: 'Harpy.js - Full-Stack NestJS + React SSR Framework',
         description:
-          'Build powerful full-stack applications with NestJS + React SSR. Automatic hydration, 1-7ms render times, built-in i18n.',
+          'Build blazing-fast, SEO-optimized full-stack apps with Harpy.js. NestJS backend, React SSR, automatic hydration, and 1–7ms render times. Beta release available.',
+        image: 'https://harpyjs.com/twitter-card.png', // optional: Twitter card image
       },
-    }),
+    },
   })
   async homepage(@CurrentLocale() locale: string): Promise<PageProps> {
     // Get dictionary for type-safe translations
