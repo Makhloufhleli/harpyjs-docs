@@ -15,18 +15,57 @@ export default function DashboardLayout({
   hydrationScripts?: Array<{ componentName: string; path: string }>;
   sections?: NavSection[];
 }) {
+  const title = meta?.title ?? 'Harpy Framework';
+  const description =
+    meta?.description ??
+    'A powerful NestJS + React framework with automatic hydration. Built for speed, precision, and adaptability.';
+  const canonical =
+    meta?.canonical ?? 'https://github.com/Makhloufhleli/harpy.js';
+
+  const og = meta?.openGraph ?? {};
+  const twitter = meta?.twitter ?? {};
+
   const chunkScripts = hydrationScripts || [];
 
   return (
     <html lang="en">
       <head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{meta?.title || 'Dashboard'}</title>
-        {meta?.description && (
-          <meta name="description" content={meta.description} />
-        )}
+        <title>{title}</title>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="/styles/styles.css" />
+        <meta
+          name="keywords"
+          content="HarpyJS, JavaScript library, JS framework, web development, full-stack development, open source, Performance, NestJS, developer tools, web apps"
+        />
+        <meta name="description" content={description} />
+        <link rel="canonical" href={canonical} />
+
+        {/* Open Graph tags */}
+        <meta property="og:title" content={og.title || title} />
+        <meta
+          property="og:description"
+          content={og.description || description}
+        />
+        <meta property="og:type" content={og.type || 'website'} />
+        {og.image && <meta property="og:image" content={og.image} />}
+        {og.url && <meta property="og:url" content={og.url} />}
+
+        {/* Twitter cards */}
+        <meta
+          name="twitter:card"
+          content={twitter.card || 'summary_large_image'}
+        />
+        <meta name="twitter:title" content={twitter.title || title} />
+        <meta
+          name="twitter:description"
+          content={twitter.description || description}
+        />
+        {twitter.image && <meta name="twitter:image" content={twitter.image} />}
+        <link
+          rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦅</text></svg>"
+        />
       </head>
       <body className="min-h-screen bg-gray-100 overflow-x-hidden max-w-full">
         {/* Mobile menu*/}
