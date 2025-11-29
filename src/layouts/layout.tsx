@@ -117,7 +117,7 @@ export default function DefaultLayout({
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
               <div>
                 <div className="flex items-center gap-2 mb-4">
-                  <span className="text-3xl">🦅</span>
+                  <Logo className="inline size-0.5 ml-1" />
                   <span className="text-xl font-bold bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
                     Harpy.js
                   </span>
@@ -175,7 +175,7 @@ export default function DefaultLayout({
               <p className="text-slate-400 mb-2">
                 Powered by{' '}
                 <span className="text-amber-500 font-semibold">Harpy.js</span> -
-                Soar above the competition 🦅
+                Soar above the competition
               </p>
               <p className="text-slate-500">
                 Built with ❤️ by{' '}
