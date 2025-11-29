@@ -34,6 +34,12 @@ async function bootstrap() {
     decorateReply: false,
   });
 
+  await fastify.register(fastifyStatic, {
+    root: path.join(process.cwd(), 'public'),
+    prefix: '/public/',
+    decorateReply: false,
+  });
+
   inject();
 
   await app.listen({

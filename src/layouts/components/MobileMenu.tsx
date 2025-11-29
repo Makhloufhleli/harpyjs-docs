@@ -31,7 +31,7 @@ export default function MobileMenu({
     <>
       {/* Burger button - left side, always visible on mobile, normal flex item */}
       <button
-        className="fixed top-3 left-4 z-20 lg:hidden bg-amber-600 text-white p-2 rounded-lg shadow-lg hover:bg-amber-700 transition-colors cursor-pointer shrink-0"
+        className="fixed top-5 left-5 z-20 lg:hidden bg-amber-600 text-white p-2 rounded-lg shadow-lg hover:bg-amber-700 transition-colors cursor-pointer shrink-0"
         aria-label="Open menu"
         onClick={() => setOpen(true)}
       >
