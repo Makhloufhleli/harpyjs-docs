@@ -1,4 +1,5 @@
 import type { JsxLayoutProps } from '@hepta-solutions/harpy-core';
+import Logo from 'src/components/logo';
 
 export default function DefaultLayout({
   children,
@@ -54,8 +55,9 @@ export default function DefaultLayout({
 
         {/* Favicon */}
         <link
-          rel="icon"
-          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦅</text></svg>"
+          rel="shortcut icon"
+          href="/public/favicon.svg"
+          type="image/x-icon"
         />
       </head>
       <body className="bg-slate-50 overflow-x-hidden">
@@ -64,12 +66,10 @@ export default function DefaultLayout({
           <div className="container mx-auto max-w-6xl px-4">
             <div className="flex items-center justify-between h-16">
               <a href="/" className="flex items-center gap-2 group">
-                <span className="text-3xl group-hover:scale-110 transition-transform">
-                  🦅
-                </span>
-                <span className="text-lg md:text-xl font-bold bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
+                <Logo className="text-amber-500 size-12" />
+                {/* <span className="text-lg md:text-xl font-bold bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
                   Harpy
-                </span>
+                </span> */}
               </a>
               <nav className="flex items-center gap-2 md:gap-3">
                 <a

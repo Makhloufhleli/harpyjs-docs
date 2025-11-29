@@ -2,6 +2,7 @@ import * as React from 'react';
 import { JsxLayoutProps } from '@hepta-solutions/harpy-core';
 import MobileMenu from './components/MobileMenu';
 import { NavSection } from './types/nav.types';
+import Logo from 'src/components/logo';
 
 /**
  * Dashboard Layout - Sidebar layout for admin/dashboard pages
@@ -63,8 +64,9 @@ export default function DashboardLayout({
         />
         {twitter.image && <meta name="twitter:image" content={twitter.image} />}
         <link
-          rel="icon"
-          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦅</text></svg>"
+          rel="shortcut icon"
+          href="/public/favicon.svg"
+          type="image/x-icon"
         />
       </head>
       <body className="min-h-screen bg-gray-100 overflow-x-hidden max-w-full">
@@ -72,21 +74,18 @@ export default function DashboardLayout({
         <MobileMenu sections={sections} />
         <div className="relative">
           <div className="flex flex-col min-w-0">
-            <header className="bg-white pl-16 lg:pl-8 pr-4 py-4 shadow-sm flex items-center gap-3 border-b border-slate-200 sticky top-0 z-10">
+            <header className="bg-white pl-16 lg:pl-8 pr-4 py-4 shadow-lg flex items-center gap-3  shadow-slate-200 sticky top-0 z-10">
               <div className="flex items-center gap-1 flex-1">
                 <a
                   href="/"
                   className="flex items-center gap-2 text-xl font-bold"
                 >
-                  <span className="text-2xl">🦅</span>
-                  <span className="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
-                    Harpy.js
-                  </span>
+                  <Logo className="size-12" />
                 </a>
-                <span className="inline-block px-3 py-1 bg-amber-500/20 border border-amber-500 rounded-lg text-amber-600 text-xs md:text-sm font-bold">
-                  BETA
-                </span>
               </div>
+              <span className="inline-block px-3 py-1 bg-amber-500/20 border border-amber-500 rounded-lg text-amber-600 text-xs md:text-sm font-bold">
+                BETA
+              </span>
 
               <div className="flex gap-1 md:gap-3 items-center flex-shrink-0">
                 <a
@@ -122,11 +121,11 @@ export default function DashboardLayout({
               </div>
             </header>
             {/* Sidebar for desktop only */}
-            <aside className="hidden lg:fixed lg:block left-0 top-16 z-60 w-[280px] border-r border-slate-200 h-[calc(100vh-64px)] overflow-y-auto">
+            <aside className="hidden lg:fixed lg:block left-0 top-20 z-60 w-[280px] shadow-lg shadow-slate-300 h-[calc(100vh-64px)] overflow-y-auto">
               <nav className="px-6 py-6 space-y-8">
                 {sections.map((section) => (
                   <div key={section.id}>
-                    <h3 className="text-xs font-bold text-slate-900 mb-3 uppercase tracking-wider px-2">
+                    <h3 className="text-sm font-bold text-slate-900 mb-3 uppercase tracking-wider px-2">
                       {section.title}
                     </h3>
                     <ul className="space-y-1">
