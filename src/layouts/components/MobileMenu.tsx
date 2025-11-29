@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react';
+import Logo from 'src/components/logo';
 
 interface DocNavItem {
   id: string;
@@ -63,8 +64,8 @@ export default function MobileMenu({
           >
             <div className="px-6 py-4 border-b border-slate-200 flex justify-between items-center">
               <a href="/" className="flex items-center gap-2 text-xl font-bold">
-                <span className="text-2xl">🦅</span>
-                <span className="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+                <Logo className="size-11" />
+                <span className=" text-3xl bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
                   Harpy.js
                 </span>
               </a>
