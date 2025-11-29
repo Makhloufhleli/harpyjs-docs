@@ -156,7 +156,8 @@ export default function DashboardLayout({
                     <span className="text-amber-600 font-semibold">
                       Harpy.js
                     </span>{' '}
-                    - Soar above the competition 🦅
+                    - Soar above the competition
+                    <Logo className="inline size-0.5 ml-1" />
                   </p>
                 </div>
               </div>
