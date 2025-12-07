@@ -1,7 +1,8 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Req } from '@nestjs/common';
+import type { FastifyRequest } from 'fastify';
 import { JsxRender } from '@hepta-solutions/harpy-core';
 import RoutingPage from './views/routing-page';
-import { NavigationService } from '../../shared/navigation.service';
+import { NavigationService } from '@hepta-solutions/harpy-core';
 import { getDictionary } from '../../i18n/get-dictionary';
 import DashboardLayout from '../../layouts/dashboard-layout';
 
@@ -32,14 +33,22 @@ export class RoutingDocsController {
       },
     },
   })
-  async routing() {
-    const sections = this.navigationService.getAllSections();
+  async routing(@Req() req: FastifyRequest) {
+    const currentPath = (req.originalUrl || req.url) ?? '/';
+
+    // Let the NavigationService compute the active item and decorate
+    // returned sections (fast server-side helper). This avoids duplicating
+    // the path-normalization/indexing logic here and keeps SSR consistent.
+    const sections = this.navigationService.getSectionsForRoute(currentPath);
     const dict = await getDictionary('en');
+
+    const activeItemId = this.navigationService.getActiveItemId(currentPath);
 
     return {
       sections,
       dict,
       locale: 'en',
+      activeItemId,
     };
   }
 }

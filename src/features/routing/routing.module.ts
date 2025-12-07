@@ -1,20 +1,26 @@
-import { Module, OnModuleInit } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { RoutingDocsController } from './routing.controller';
 import { RoutingService } from './routing.service';
-import { NavigationService } from '../../shared/navigation.service';
+import {
+  NavigationService,
+  NavigationRegistry,
+  AutoRegisterModule,
+} from '@hepta-solutions/harpy-core';
 
 @Module({
   controllers: [RoutingDocsController],
   providers: [RoutingService],
 })
-export class RoutingDocsModule implements OnModuleInit {
+export class RoutingDocsModule extends AutoRegisterModule {
   constructor(
-    private readonly navigationService: NavigationService,
+    navigationService: NavigationService,
     private readonly routingService: RoutingService,
-  ) {}
+  ) {
+    super(navigationService);
+  }
 
-  onModuleInit() {
-    // Register this module's navigation items
-    this.routingService.registerNavigation(this.navigationService);
+  protected registerNavigation(navigation: NavigationRegistry): void {
+    // Delegate to the routing service; AutoRegisterModule will call this
+    this.routingService.registerNavigation(navigation);
   }
 }

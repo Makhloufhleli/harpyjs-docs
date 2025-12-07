@@ -6,6 +6,7 @@ export interface PageProps {
   sections: any[];
   dict: Dictionary;
   locale: string;
+  activeItemId?: string;
 }
 
 export default function IstallationPage() {

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { NavigationService } from '../../shared/navigation.service';
+import { NavigationService } from '@hepta-solutions/harpy-core';
 
 @Injectable()
 export class InternationalizationService {

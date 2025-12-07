@@ -1,8 +1,9 @@
-import { JsxRender, CurrentLocale } from '@hepta-solutions/harpy-core';
+import { JsxRender } from '@hepta-solutions/harpy-core';
 import { Controller, Get } from '@nestjs/common';
 import { HeroService } from './hero.service';
 import HeroPage, { type PageProps } from './views/hero-page';
 import { getDictionary } from '../../i18n/get-dictionary';
+import { CurrentLocale } from '@hepta-solutions/harpy-i18n';
 
 @Controller()
 export class HeroController {

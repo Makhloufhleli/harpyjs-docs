@@ -1,15 +1,11 @@
 import 'reflect-metadata';
 import { NestFactory } from '@nestjs/core';
-import {
-  FastifyAdapter,
-  NestFastifyApplication,
-} from '@nestjs/platform-fastify';
+import { FastifyAdapter } from '@nestjs/platform-fastify';
 import { AppModule } from './app.module';
-import { withJsxEngine } from '@hepta-solutions/harpy-core';
+import { setupHarpyApp } from '@hepta-solutions/harpy-core';
+import type { NestFastifyApplication } from '@nestjs/platform-fastify';
+
 import DefaultLayout from './layouts/layout';
-import * as path from 'path';
-import fastifyStatic from '@fastify/static';
-import fastifyCookie from '@fastify/cookie';
 import { inject } from '@vercel/analytics';
 
 async function bootstrap() {
@@ -18,27 +14,8 @@ async function bootstrap() {
     new FastifyAdapter(),
   );
 
-  // Set up JSX rendering engine
-  withJsxEngine(app, DefaultLayout);
-
-  // Register Fastify plugins
-  const fastify = app.getHttpAdapter().getInstance();
-
-  // Register cookie support for i18n
-  await fastify.register(fastifyCookie);
-
-  // Register static file serving
-  await fastify.register(fastifyStatic, {
-    root: path.join(process.cwd(), 'dist'),
-    prefix: '/',
-    decorateReply: false,
-  });
-
-  await fastify.register(fastifyStatic, {
-    root: path.join(process.cwd(), 'public'),
-    prefix: '/public/',
-    decorateReply: false,
-  });
+  // Centralized Harpy setup: JSX engine, cookies, and static handlers
+  await setupHarpyApp(app, { layout: DefaultLayout, distDir: 'dist' });
 
   inject();
 
@@ -50,4 +27,4 @@ async function bootstrap() {
   console.log(`Application is running on: ${await app.getUrl()}`);
 }
 
-bootstrap();
+void bootstrap();

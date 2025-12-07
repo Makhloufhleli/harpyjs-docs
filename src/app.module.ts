@@ -1,20 +1,19 @@
 import { Module } from '@nestjs/common';
-import { I18nModule } from '@hepta-solutions/harpy-core';
+import { I18nModule } from '@hepta-solutions/harpy-i18n';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
-import { SharedModule } from './shared/shared.module';
 import { HeroModule } from './features/hero/hero.module';
 import { GettingStartedModule } from './features/getting-started/getting-started.module';
-import { ThrottlerModule as AppThrottler } from './features/throttler/throttler.module';
 import { RoutingDocsModule } from './features/routing/routing.module';
 import { InternationalizationModule } from './features/internationalization/internationalization.module';
 import { i18nConfig } from './i18n/i18n.config';
 import { InstallationModule } from './features/installation/installation.module';
+import { RouterModule } from '@hepta-solutions/harpy-core';
 
 @Module({
   imports: [
-    // Global core module with shared services
-    SharedModule,
+    RouterModule,
+    // Note: core-concepts will be registered by the routing module itself.
     // Configure I18n module
     I18nModule.forRoot(i18nConfig),
     // Rate limiting: 10 requests per 10 seconds
@@ -27,7 +26,6 @@ import { InstallationModule } from './features/installation/installation.module'
     HeroModule,
     GettingStartedModule,
     InstallationModule,
-    AppThrottler,
     RoutingDocsModule,
     InternationalizationModule,
   ],
