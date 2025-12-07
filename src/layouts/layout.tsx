@@ -1,4 +1,4 @@
-import { Link, type JsxLayoutProps } from '@hepta-solutions/harpy-core';
+import { Link, type JsxLayoutProps } from '@harpy-js/core';
 import Logo from 'src/components/logo';
 
 export default function DefaultLayout({
@@ -95,7 +95,7 @@ export default function DefaultLayout({
                   <span className="hidden sm:inline">GitHub</span>
                 </Link>
                 <Link
-                  href="https://www.npmjs.com/package/@hepta-solutions/harpy-cli"
+                  href="https://www.npmjs.com/package/@harpy-js/cli"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg transition-all"
@@ -148,7 +148,7 @@ export default function DefaultLayout({
                   </li>
                   <li>
                     <Link
-                      href="https://www.npmjs.com/package/@hepta-solutions/harpy-core"
+                      href="https://www.npmjs.com/package/@harpy-js/core"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:text-amber-400 transition-colors"
@@ -158,7 +158,7 @@ export default function DefaultLayout({
                   </li>
                   <li>
                     <Link
-                      href="https://www.npmjs.com/package/@hepta-solutions/harpy-cli"
+                      href="https://www.npmjs.com/package/@harpy-js/cli"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:text-amber-400 transition-colors"
