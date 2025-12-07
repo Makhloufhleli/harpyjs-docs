@@ -3,6 +3,7 @@ import { JsxLayoutProps } from '@hepta-solutions/harpy-core';
 import MobileMenu from './components/MobileMenu';
 import { NavSection } from './types/nav.types';
 import Logo from 'src/components/logo';
+import Link from '@hepta-solutions/harpy-core/client/Link';
 
 /**
  * Dashboard Layout - Sidebar layout for admin/dashboard pages
@@ -76,18 +77,19 @@ export default function DashboardLayout({
           <div className="flex flex-col min-w-0">
             <header className="bg-white pl-16 lg:pl-8 pr-4 py-4 shadow-lg flex items-center gap-3  shadow-slate-200 sticky top-0 z-10">
               <div className="flex items-center gap-1 flex-1">
-                <a
+                <Link
                   href="/"
                   className="flex items-center gap-2 text-xl font-bold"
                 >
                   <Logo className="size-12" />
-                </a>
+                </Link>
               </div>
               <span className="inline-block px-3 py-1 bg-amber-500/20 border border-amber-500 rounded-lg text-amber-600 text-xs md:text-sm font-bold">
                 BETA
               </span>
+              {/* Debug badge removed: rely on server-provided active flags */}
 
-              <div className="flex gap-1 md:gap-3 items-center flex-shrink-0">
+              <div className="flex gap-1 md:gap-3 items-center shrink-0">
                 <a
                   href="https://github.com/Makhloufhleli/harpy.js"
                   target="_blank"
@@ -131,12 +133,16 @@ export default function DashboardLayout({
                     <ul className="space-y-1">
                       {section.items.map((item) => (
                         <li key={item.id}>
-                          <a
+                          <Link
                             href={item.href}
-                            className="block text-sm text-slate-600 hover:text-amber-600 hover:bg-amber-50 px-2 py-1.5 rounded transition-colors"
+                            className={`block text-sm ${
+                              (item as { active?: boolean }).active === true
+                                ? 'text-amber-600 bg-amber-50 font-semibold'
+                                : 'text-slate-600'
+                            } hover:text-amber-600 hover:bg-amber-50 px-2 py-1.5 rounded transition-colors`}
                           >
                             {item.title}
-                          </a>
+                          </Link>
                         </li>
                       ))}
                     </ul>

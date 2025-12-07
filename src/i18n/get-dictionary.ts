@@ -41,10 +41,11 @@ export const getDictionary = async (locale: string): Promise<Dictionary> => {
   }
 
   // Load dictionary
-  const dict = await (dictionaries[locale as keyof typeof dictionaries]?.() ?? dictionaries.en());
-  
+  const dict = await (dictionaries[locale as keyof typeof dictionaries]?.() ??
+    dictionaries.en());
+
   // Cache it
   dictionaryCache.set(locale, dict);
-  
+
   return dict;
 };

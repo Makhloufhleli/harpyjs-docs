@@ -1,19 +1,25 @@
-import { Module, OnModuleInit } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { GettingStartedController } from './getting-started.controller';
 import { GettingStartedService } from './getting-started.service';
-import { NavigationService } from 'src/shared/navigation.service';
+import {
+  NavigationService,
+  NavigationRegistry,
+  AutoRegisterModule,
+} from '@hepta-solutions/harpy-core';
 
 @Module({
   controllers: [GettingStartedController],
   providers: [GettingStartedService],
 })
-export class GettingStartedModule implements OnModuleInit {
+export class GettingStartedModule extends AutoRegisterModule {
   constructor(
-    private readonly navigationService: NavigationService,
+    navigationService: NavigationService,
     private readonly gettingStartedService: GettingStartedService,
-  ) {}
+  ) {
+    super(navigationService);
+  }
 
-  onModuleInit() {
-    this.gettingStartedService.registerNavigation(this.navigationService);
+  protected registerNavigation(navigation: NavigationRegistry): void {
+    this.gettingStartedService.registerNavigation(navigation);
   }
 }

@@ -1,6 +1,7 @@
 'use client';
 import * as React from 'react';
 import Logo from 'src/components/logo';
+import Link from '@hepta-solutions/harpy-core/client/Link';
 
 interface DocNavItem {
   id: string;
@@ -26,6 +27,22 @@ export default function MobileMenu({
     const close = () => setOpen(false);
     window.addEventListener('resize', close);
     return () => window.removeEventListener('resize', close);
+  }, [open]);
+
+  // Close the drawer when navigation occurs (popstate/hashchange/pushstate)
+  React.useEffect(() => {
+    if (!open) return;
+    const onNav = () => setOpen(false);
+    window.addEventListener('popstate', onNav);
+    window.addEventListener('hashchange', onNav);
+    window.addEventListener('pushstate', onNav);
+    window.addEventListener('locationchange', onNav);
+    return () => {
+      window.removeEventListener('popstate', onNav);
+      window.removeEventListener('hashchange', onNav);
+      window.removeEventListener('pushstate', onNav);
+      window.removeEventListener('locationchange', onNav);
+    };
   }, [open]);
 
   return (
@@ -63,12 +80,16 @@ export default function MobileMenu({
               ${open ? 'translate-x-0' : '-translate-x-full'}`}
           >
             <div className="px-6 py-4 border-b border-slate-200 flex justify-between items-center">
-              <a href="/" className="flex items-center gap-2 text-xl font-bold">
+              <Link
+                href="/"
+                className="flex items-center gap-2 text-xl font-bold"
+                onClick={() => setOpen(false)}
+              >
                 <Logo className="size-11" />
                 <span className=" text-3xl bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
                   Harpy.js
                 </span>
-              </a>
+              </Link>
               <button
                 className="text-slate-600 hover:text-slate-900"
                 aria-label="Close menu"
@@ -99,12 +120,17 @@ export default function MobileMenu({
                   <ul className="space-y-1">
                     {section.items.map((item) => (
                       <li>
-                        <a
+                        <Link
                           href={item.href}
-                          className="block text-sm text-slate-600 hover:text-amber-600 hover:bg-amber-50 px-2 py-1.5 rounded transition-colors"
+                          onClick={() => setOpen(false)}
+                          className={`block text-sm ${
+                            (item as { active?: boolean }).active === true
+                              ? 'text-amber-600 bg-amber-50 font-semibold'
+                              : 'text-slate-600'
+                          } hover:text-amber-600 hover:bg-amber-50 px-2 py-1.5 rounded transition-colors`}
                         >
                           {item.title}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>

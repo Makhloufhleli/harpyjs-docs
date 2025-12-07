@@ -27,7 +27,8 @@
   "dependencies": {
     "@fastify/cookie": "^11.0.0",
     "@fastify/static": "^8.0.0",
-    "@hepta-solutions/harpy-core": "^0.4.3",
+    "@hepta-solutions/harpy-core": "^0.4.7",
+    "@hepta-solutions/harpy-i18n": "^0.1.1",
     "@nestjs/common": "^11.0.1",
     "@nestjs/core": "^11.0.1",
     "@nestjs/platform-express": "^11.0.1",

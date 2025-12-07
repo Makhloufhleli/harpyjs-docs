@@ -1,12 +1,16 @@
 import { Global, Module } from '@nestjs/common';
-import { NavigationService } from './navigation.service';
+import { RouterModule } from '@hepta-solutions/harpy-core';
 
 /**
- * Global module that provides shared documentation navigation service
+ * Legacy shared module kept for compatibility. It imports the core RouterModule
+ * so the application's feature modules can still import `SharedModule` while
+ * the actual `NavigationService` provider comes from the core package.
  */
 @Global()
 @Module({
-  providers: [NavigationService],
-  exports: [NavigationService],
+  imports: [RouterModule],
+  // Re-export the RouterModule so providers (NavigationService) are available
+  // to any module that imports `SharedModule` (backwards compatibility).
+  exports: [RouterModule],
 })
 export class SharedModule {}

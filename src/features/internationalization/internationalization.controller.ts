@@ -1,8 +1,8 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Req } from '@nestjs/common';
 import { JsxRender } from '@hepta-solutions/harpy-core';
 import I18nPage from './views/i18n-page';
 import DashboardLayout from '../../layouts/dashboard-layout';
-import { NavigationService } from '../../shared/navigation.service';
+import { NavigationService } from '@hepta-solutions/harpy-core';
 import { getDictionary } from '../../i18n/get-dictionary';
 
 @Controller('docs')
@@ -33,14 +33,18 @@ export class InternationalizationController {
       },
     },
   })
-  async i18n() {
-    const sections = this.navigationService.getAllSections();
+  async i18n(@Req() req: any) {
+    const currentPath = (req && (req.originalUrl || req.url)) || '/';
+
+    const sections = this.navigationService.getSectionsForRoute(currentPath);
     const dict = await getDictionary('en');
+    const activeItemId = this.navigationService.getActiveItemId(currentPath);
 
     return {
       sections,
       dict,
       locale: 'en',
+      activeItemId,
     };
   }
 }
