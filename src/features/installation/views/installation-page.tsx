@@ -85,15 +85,15 @@ export default function IstallationPage() {
 
             <CommandTabs
               commands={{
-                pnpm: `pnpm i -g @hepta-solutions/harpy-cli
+                pnpm: `pnpm i -g @harpy-js/cli
 harpy create my-app
 cd my-app
 pnpm dev`,
-                npm: `npm i -g @hepta-solutions/harpy-cli
+                npm: `npm i -g @harpy-js/cli
 harpy create my-app
 cd my-app
 npm run dev`,
-                yarn: `yarn global add @hepta-solutions/harpy-cli
+                yarn: `yarn global add @harpy-js/cli
 harpy create my-app
 cd my-app
 yarn dev`,
@@ -118,9 +118,9 @@ yarn dev`,
 
             <CommandTabs
               commands={{
-                pnpm: `pnpm add @hepta-solutions/harpy-core react react-dom`,
-                npm: `npm install @hepta-solutions/harpy-core react react-dom`,
-                yarn: `yarn add @hepta-solutions/harpy-core react react-dom`,
+                pnpm: `pnpm add @harpy-js/core react react-dom`,
+                npm: `npm install @harpy-js/core react react-dom`,
+                yarn: `yarn add @harpy-js/core react react-dom`,
               }}
             />
 
@@ -159,7 +159,7 @@ yarn dev`,
 
               <pre className="bg-slate-900 text-amber-400 rounded-lg p-4 overflow-x-auto mb-3 text-sm">
                 <code>{`
-pnpm add @hepta-solutions/harpy-core react react-dom`}</code>
+pnpm add @harpy-js/core react react-dom`}</code>
               </pre>
 
               <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 text-sm text-slate-700">
@@ -182,7 +182,7 @@ pnpm add @hepta-solutions/harpy-core react react-dom`}</code>
               <pre className="bg-slate-900 text-amber-400 rounded-lg p-4 overflow-x-auto mb-3 text-sm">
                 <code>{`// layouts/layout.tsx
 import * as React from 'react';
-import { JsxLayoutProps } from '@hepta-solutions/harpy-core';
+import { JsxLayoutProps } from '@harpy-js/core';
 
 export default function MainLayout({ children, meta, hydrationScripts, sections, lang }: JsxLayoutProps & { lang?: string }) {
   const title = meta?.title ?? 'Harpy Framework';
@@ -278,7 +278,7 @@ export default function MainLayout({ children, meta, hydrationScripts, sections,
               <pre className="bg-slate-900 text-amber-400 rounded-lg p-4 overflow-x-auto mb-3 text-sm">
                 <code>{`import { NestFactory } from '@nestjs/core';
   import { AppModule } from './app.module';
-  import { withJsxEngine } from '@hepta-solutions/harpy-core';
+  import { withJsxEngine } from '@harpy-js/core';
   import fastifyStatic from '@fastify/static';
   import {
     FastifyAdapter,

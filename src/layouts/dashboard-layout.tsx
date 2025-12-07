@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { JsxLayoutProps } from '@hepta-solutions/harpy-core';
+import { JsxLayoutProps } from '@harpy-js/core';
 import MobileMenu from './components/MobileMenu';
 import { NavSection } from './types/nav.types';
 import Logo from 'src/components/logo';
-import Link from '@hepta-solutions/harpy-core/client/Link';
+import Link from '@harpy-js/core/client/Link';
 
 /**
  * Dashboard Layout - Sidebar layout for admin/dashboard pages
@@ -106,7 +106,7 @@ export default function DashboardLayout({
                   <span className="hidden sm:inline">GitHub</span>
                 </a>
                 <a
-                  href="https://www.npmjs.com/package/@hepta-solutions/harpy-cli"
+                  href="https://www.npmjs.com/package/@harpy-js/cli"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 md:gap-2 px-2 md:px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white text-xs md:text-sm font-medium rounded-lg transition-all"

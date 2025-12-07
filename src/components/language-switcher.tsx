@@ -1,6 +1,6 @@
 'use client';
 
-import { useI18n } from '@hepta-solutions/harpy-core/client';
+import { useI18n } from '@harpy-js/core/client';
 
 /**
  * Language Switcher Component

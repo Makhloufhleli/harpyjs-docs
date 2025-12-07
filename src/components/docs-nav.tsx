@@ -1,10 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import type { NavSection } from '@hepta-solutions/harpy-core';
+import type { NavSection } from '@harpy-js/core';
 import {
   buildHrefIndex,
   getActiveItemIdFromIndex,
-} from '@hepta-solutions/harpy-core/client/getActiveItemId';
-import Link from '@hepta-solutions/harpy-core/client/Link';
+} from '@harpy-js/core/client/getActiveItemId';
+import Link from '@harpy-js/core/client/Link';
 
 type Props = {
   sections: NavSection[];

@@ -1,11 +1,11 @@
-import { JsxRender } from '@hepta-solutions/harpy-core';
+import { JsxRender } from '@harpy-js/core';
 import { Controller, Get, Req } from '@nestjs/common';
 import type { FastifyRequest } from 'fastify';
 import DocsPage, { type PageProps } from './views/installation-page';
 import { getDictionary } from '../../i18n/get-dictionary';
 import DashboardLayout from '../../layouts/dashboard-layout';
-import { NavigationService } from '@hepta-solutions/harpy-core';
-import { CurrentLocale } from '@hepta-solutions/harpy-i18n';
+import { NavigationService } from '@harpy-js/core';
+import { CurrentLocale } from '@harpy-js/i18n';
 
 @Controller('docs')
 export class InstallationController {

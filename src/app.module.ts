@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { I18nModule } from '@hepta-solutions/harpy-i18n';
+import { I18nModule } from '@harpy-js/i18n';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 import { HeroModule } from './features/hero/hero.module';
@@ -8,7 +8,7 @@ import { RoutingDocsModule } from './features/routing/routing.module';
 import { InternationalizationModule } from './features/internationalization/internationalization.module';
 import { i18nConfig } from './i18n/i18n.config';
 import { InstallationModule } from './features/installation/installation.module';
-import { RouterModule } from '@hepta-solutions/harpy-core';
+import { RouterModule } from '@harpy-js/core';
 
 @Module({
   imports: [

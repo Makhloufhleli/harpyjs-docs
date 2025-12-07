@@ -5,7 +5,7 @@ import {
   NavigationService,
   NavigationRegistry,
   AutoRegisterModule,
-} from '@hepta-solutions/harpy-core';
+} from '@harpy-js/core';
 
 @Module({
   controllers: [GettingStartedController],

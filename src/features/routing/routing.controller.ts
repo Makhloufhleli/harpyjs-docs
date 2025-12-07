@@ -1,8 +1,8 @@
 import { Controller, Get, Req } from '@nestjs/common';
 import type { FastifyRequest } from 'fastify';
-import { JsxRender } from '@hepta-solutions/harpy-core';
+import { JsxRender } from '@harpy-js/core';
 import RoutingPage from './views/routing-page';
-import { NavigationService } from '@hepta-solutions/harpy-core';
+import { NavigationService } from '@harpy-js/core';
 import { getDictionary } from '../../i18n/get-dictionary';
 import DashboardLayout from '../../layouts/dashboard-layout';
 

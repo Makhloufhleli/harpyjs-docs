@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import { NestFactory } from '@nestjs/core';
 import { FastifyAdapter } from '@nestjs/platform-fastify';
 import { AppModule } from './app.module';
-import { setupHarpyApp } from '@hepta-solutions/harpy-core';
+import { setupHarpyApp } from '@harpy-js/core';
 import type { NestFastifyApplication } from '@nestjs/platform-fastify';
 
 import DefaultLayout from './layouts/layout';
