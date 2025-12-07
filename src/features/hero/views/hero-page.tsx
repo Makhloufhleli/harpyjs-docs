@@ -1,4 +1,5 @@
 import { Dictionary } from '../../../i18n/get-dictionary';
+import Logo from '../../../components/logo';
 
 export interface PageProps {
   items?: string[];
@@ -29,18 +30,23 @@ export default function HeroPage() {
       {/* Hero Section */}
       <div className="relative z-10 container mx-auto max-w-7xl px-4 pt-20 pb-32">
         <div className="text-center mb-16">
+          {/* Logo */}
+          <div className="flex justify-center mb-6">
+            <Logo width={60} height={60} />
+          </div>
+
           {/* Title */}
-          <h1 className="text-7xl font-extrabold mb-6">
-            <span className="bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6">
+            <span className="bg-linear-to-r from-amber-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
               Harpy.js
             </span>
-            <span className="inline-block ml-4 px-4 py-2 bg-amber-500/20 border border-amber-500 rounded-lg text-amber-400 text-2xl font-bold">
+            <span className="inline-block ml-2 sm:ml-4 px-3 sm:px-4 py-1 sm:py-2 bg-amber-500/20 border border-amber-500 rounded-lg text-amber-400 text-lg sm:text-xl md:text-2xl font-bold">
               BETA
             </span>
           </h1>
 
           {/* Subtitle */}
-          <p className="text-2xl text-slate-300 mb-4 font-light">
+          <p className="text-lg sm:text-xl md:text-2xl text-slate-300 mb-4 font-light px-4">
             Full-Stack NestJS Framework with React SSR
           </p>
 
@@ -65,11 +71,11 @@ export default function HeroPage() {
           {/* Version Badges */}
           <div className="flex flex-wrap justify-center gap-3">
             <img
-              src="https://img.shields.io/npm/v/@hepta-solutions/harpy-core?label=harpy-core&style=for-the-badge&color=orange"
+              src="https://img.shields.io/npm/v/@harpy-js/core?label=harpy-core&style=for-the-badge&color=orange"
               alt="Core Version"
             />
             <img
-              src="https://img.shields.io/npm/v/@hepta-solutions/harpy-cli?label=harpy-cli&style=for-the-badge&color=orange"
+              src="https://img.shields.io/npm/v/@harpy-js/cli?label=harpy-cli&style=for-the-badge&color=orange"
               alt="CLI Version"
             />
             <img
@@ -80,7 +86,7 @@ export default function HeroPage() {
         </div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 justify-items-center">
           {[
             {
               icon: '🚀',
@@ -103,25 +109,25 @@ export default function HeroPage() {
               desc: 'Advanced internationalization with dictionary caching and locale switching',
             },
           ].map((feature, index) => (
-            <>
-              <div
-                key={feature.title}
-                className="card-wrapper w-full min-h-[250px] hover:-translate-y-2 hover:shadow-2xl hover:shadow-amber-500/20 transition-all duration-300"
-                style={
-                  {
-                    '--animation-delay': `${index * -1.75}s`,
-                  } as React.CSSProperties
-                }
-              >
-                <div className="card-content p-6 flex flex-col">
-                  <div className="text-5xl mb-4">{feature.icon}</div>
-                  <h3 className="text-xl font-bold text-white mb-2">
-                    {feature.title}
-                  </h3>
-                  <p className="text-slate-400">{feature.desc}</p>
-                </div>
+            <div
+              key={feature.title}
+              className="card-wrapper w-full hover:-translate-y-2 hover:shadow-2xl hover:shadow-amber-500/20 transition-all duration-300"
+              style={
+                {
+                  '--animation-delay': `${index * -1.75}s`,
+                } as React.CSSProperties
+              }
+            >
+              <div className="card-content p-6 flex flex-col h-full items-center text-center">
+                <div className="text-5xl mb-4">{feature.icon}</div>
+                <h3 className="text-xl font-bold text-white mb-2 break-words">
+                  {feature.title}
+                </h3>
+                <p className="text-slate-400 text-sm leading-relaxed break-words flex-grow">
+                  {feature.desc}
+                </p>
               </div>
-            </>
+            </div>
           ))}
         </div>
       </div>

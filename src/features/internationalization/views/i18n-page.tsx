@@ -236,7 +236,7 @@ export const getDictionary = async (locale: string): Promise<Dictionary> => {
           </h3>
           <pre className="bg-slate-900 text-amber-400 rounded-lg p-4 overflow-x-auto mb-6 text-sm">
             <code>{`import { Controller, Get } from '@nestjs/common';
-import { JsxRender } from '@hepta-solutions/harpy-core';
+import { JsxRender } from '@harpy-js/core';
 import HomePage from './views/homepage';
 import { getDictionary } from '../i18n/get-dictionary';
 
@@ -327,7 +327,7 @@ export default function HomePage({ dict, locale }: PageProps) {
           <pre className="bg-slate-900 text-amber-400 rounded-lg p-4 overflow-x-auto mb-6 text-sm">
             <code>{`'use client';
 
-import { useI18n } from '@hepta-solutions/harpy-core/client';
+import { useI18n } from '@harpy-js/core/client';
 
 export function LanguageSwitcher() {
   const { locale, switchLocale, t } = useI18n();
@@ -365,7 +365,7 @@ export function LanguageSwitcher() {
           <pre className="bg-slate-900 text-amber-400 rounded-lg p-4 overflow-x-auto mb-6 text-sm">
             <code>{`'use client';
 
-import { useI18n } from '@hepta-solutions/harpy-core/client';
+import { useI18n } from '@harpy-js/core/client';
 import { useState } from 'react';
 
 export function Counter() {

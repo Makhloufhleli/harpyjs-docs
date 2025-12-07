@@ -1,5 +1,5 @@
 import { Global, Module } from '@nestjs/common';
-import { RouterModule } from '@hepta-solutions/harpy-core';
+import { RouterModule } from '@harpy-js/core';
 
 /**
  * Legacy shared module kept for compatibility. It imports the core RouterModule

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { JsxLayoutProps } from '@hepta-solutions/harpy-core';
+import { JsxLayoutProps } from '@harpy-js/core';
 
 /**
  * Auth Layout - Centered card layout for authentication pages

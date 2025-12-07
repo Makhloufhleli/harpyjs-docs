@@ -1,7 +1,7 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { InternationalizationController } from './internationalization.controller';
 import { InternationalizationService } from './internationalization.service';
-import { NavigationService } from '@hepta-solutions/harpy-core';
+import { NavigationService } from '@harpy-js/core';
 
 @Module({
   controllers: [InternationalizationController],

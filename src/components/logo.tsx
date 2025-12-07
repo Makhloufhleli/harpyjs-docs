@@ -3,9 +3,13 @@ import React from 'react';
 export default function Logo({
   className,
   gradientColors = ['#f59e0b', '#f97316', '#ef4444'],
+  width = 32,
+  height = 32,
 }: {
   className?: string;
   gradientColors?: string[];
+  width?: number;
+  height?: number;
 }) {
   return (
     <svg
@@ -13,7 +17,9 @@ export default function Logo({
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 500.000000 500.000000"
       preserveAspectRatio="xMidYMid meet"
-      className={`size-8 ${className}`}
+      width={width}
+      height={height}
+      className={`${className}`}
     >
       <defs>
         <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">

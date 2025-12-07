@@ -1,7 +1,7 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { InstallationController } from './installation.controller';
 import { InstallationService } from './installation.service';
-import { NavigationService } from '@hepta-solutions/harpy-core';
+import { NavigationService } from '@harpy-js/core';
 
 @Module({
   controllers: [InstallationController],

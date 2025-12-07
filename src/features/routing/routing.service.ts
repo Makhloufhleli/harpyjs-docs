@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { NavigationRegistry } from '@hepta-solutions/harpy-core';
+import { NavigationRegistry } from '@harpy-js/core';
 
 @Injectable()
 export class RoutingService {
