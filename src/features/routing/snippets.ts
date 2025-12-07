@@ -10,7 +10,7 @@ import {
   NavigationService,
   NavigationRegistry,
   AutoRegisterModule,
-} from '@hepta-solutions/harpy-core';
+} from '@harpy-js/core';
 
 @Module({
   controllers: [EaglesController],
@@ -32,7 +32,7 @@ export class EaglesModule extends AutoRegisterModule {
 
 export const EAGLES_SERVICE = `// features/eagles/eagles.service.ts
 import { Injectable } from '@nestjs/common';
-import { NavigationRegistry } from '@hepta-solutions/harpy-core';
+import { NavigationRegistry } from '@harpy-js/core';
 
 @Injectable()
 export class EaglesService {
@@ -52,10 +52,10 @@ export class EaglesService {
 
 export const EAGLES_CONTROLLER = `// features/eagles/eagles.controller.ts
 import { Controller, Get } from '@nestjs/common';
-import { JsxRender } from '@hepta-solutions/harpy-core';
+import { JsxRender } from '@harpy-js/core';
 import EaglesPage from './views/eagles-page';
 import DashboardLayout from '../../layouts/dashboard-layout';
-import { NavigationService } from '@hepta-solutions/harpy-core';
+import { NavigationService } from '@harpy-js/core';
 import { getDictionary } from '../../i18n/get-dictionary';
 
 @Controller('docs')
@@ -84,7 +84,7 @@ export class EaglesController {
 }`;
 
 export const EAGLES_VIEW = `// features/eagles/views/eagles-page.tsx
-import { Link } from '@hepta-solutions/harpy-core';
+import { Link } from '@harpy-js/core';
 
 export default function EaglesPage({ sections }) {
   return (
@@ -110,10 +110,10 @@ export default function EaglesPage({ sections }) {
 
 export const ROUTING_CONTROLLER = `// features/routing/routing.controller.ts
 import { Controller, Get, Req } from '@nestjs/common';
-import { JsxRender } from '@hepta-solutions/harpy-core';
+import { JsxRender } from '@harpy-js/core';
 import RoutingPage from './views/routing-page';
 import DashboardLayout from '../../layouts/dashboard-layout';
-import { NavigationService } from '@hepta-solutions/harpy-core';
+import { NavigationService } from '@harpy-js/core';
 import { getDictionary } from '../../i18n/get-dictionary';
 
 @Controller('docs')
@@ -136,7 +136,7 @@ export class RoutingController {
 }`;
 
 export const DASHBOARD_LAYOUT = `// layouts/dashboard-layout.tsx (excerpt)
-import { Link } from '@hepta-solutions/harpy-core';
+import { Link } from '@harpy-js/core';
 
 export default function DashboardLayout({ sections }) {
   return (
@@ -165,7 +165,7 @@ export default function DashboardLayout({ sections }) {
 export const MOBILE_MENU = `// layouts/components/MobileMenu.tsx (excerpt)
 'use client';
 import { useEffect, useState } from 'react';
-import { Link } from '@hepta-solutions/harpy-core';
+import { Link } from '@harpy-js/core';
 
 export default function MobileMenu({ sections }) {
   const [open, setOpen] = useState(false);
@@ -200,7 +200,7 @@ export default function MobileMenu({ sections }) {
 
 export const CORE_NAV_MODULE = `// apps/.../features/core-navigation/core-navigation.module.ts
 import { Module, Injectable, OnModuleInit } from '@nestjs/common';
-import { NavigationService } from '@hepta-solutions/harpy-core';
+import { NavigationService } from '@harpy-js/core';
 
 @Injectable()
 class CoreNavigationRegistrar implements OnModuleInit {
