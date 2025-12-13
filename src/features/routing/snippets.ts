@@ -108,22 +108,22 @@ export default function EaglesPage({ sections }) {
   );
 }`;
 
-export const ROUTING_CONTROLLER = `// features/routing/routing.controller.ts
+export const ROUTING_CONTROLLER = `// features/eagles/eagles.controller.ts
 import { Controller, Get, Req } from '@nestjs/common';
 import { JsxRender } from '@harpy-js/core';
-import RoutingPage from './views/routing-page';
+import EaglesPage from './views/eagles-page';
 import DashboardLayout from '../../layouts/dashboard-layout';
 import { NavigationService } from '@harpy-js/core';
 import { getDictionary } from '../../i18n/get-dictionary';
 
 @Controller('docs')
-export class RoutingController {
+export class EaglesController {
   constructor(private readonly navigationService: NavigationService) {}
 
-  @Get('routing')
-  @JsxRender(RoutingPage, { layout: DashboardLayout })
-  async routing(@Req() req: any) {
-    const currentPath = req.url || '/docs/routing';
+  @Get('eagles')
+  @JsxRender(EaglesPage, { layout: DashboardLayout })
+  async eagles(@Req() req: any) {
+    const currentPath = req.url || '/docs/eagles';
 
     // Returns sections where items have '.active === true' for the
     // item that matches 'currentPath'.

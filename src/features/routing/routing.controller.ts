@@ -14,22 +14,26 @@ export class RoutingDocsController {
   @JsxRender(RoutingPage, {
     layout: DashboardLayout,
     meta: {
-      title: 'Routing Guide - Harpy.js Framework (BETA)',
+      title: 'Harpy.js Routing Guide - NestJS, React & Server-Side Rendering',
       description:
-        'Comprehensive guide to routing in Harpy.js. Learn how to configure client-side and server-side routes, dynamic parameters, nested routes, and React SSR integration. Beta version.',
+        'Advanced routing guide for Harpy.js full-stack framework. Master dynamic routes, nested routing, client-side navigation, server-side rendering, automatic hydration, and performance optimization for enterprise Node.js applications with React.',
+      keywords:
+        'NestJS routing, React routing, server-side rendering routing, dynamic routing, nested routes, client-side navigation, Node.js routing, SSR patterns, performance-optimized routing, full-stack routing',
       canonical: 'https://www.harpyjs.org/docs/routing',
       openGraph: {
-        title: 'Harpy.js Routing Guide - Full-Stack NestJS + React SSR',
+        title: 'Harpy.js Routing Guide - NestJS & React SSR Framework',
         description:
-          'Step-by-step guide to set up routing in Harpy.js applications. Covers dynamic routes, nested routes, client-side navigation, SSR, and hydration. Beta release.',
+          'Master routing in full-stack applications with Harpy.js. Learn advanced routing patterns for NestJS backend and React frontend with SSR, hydration, dynamic parameters, and performance optimization.',
         type: 'website',
         url: 'https://www.harpyjs.org/docs/routing',
+        image: 'https://harpyjs.com/og-image.png',
       },
       twitter: {
         card: 'summary_large_image',
-        title: 'Harpy.js Routing Guide',
+        title: 'Harpy.js Routing - NestJS & React SSR',
         description:
-          'Complete guide to routing in Harpy.js with NestJS + React SSR. Learn dynamic routing, nested routes, client-side navigation, and SSR integration. Beta version.',
+          'Complete routing guide for full-stack applications. Learn dynamic routing, SSR integration, client-side navigation, and performance patterns with NestJS and React.',
+        image: 'https://harpyjs.com/twitter-card.png',
       },
     },
   })

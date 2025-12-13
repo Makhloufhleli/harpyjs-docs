@@ -13,23 +13,28 @@ export class InternationalizationController {
   @JsxRender(I18nPage, {
     layout: DashboardLayout,
     meta: {
-      title: 'Internationalization Guide - Harpy.js Framework (BETA)',
+      title:
+        'Harpy.js i18n Guide - Internationalization for NestJS & React SSR',
       description:
-        'Learn how to implement internationalization (i18n) in Harpy.js. Full-stack guide for NestJS + React SSR including localization setup, dynamic routing, hydration, and best practices. Beta version.',
+        'Complete internationalization (i18n) guide for Harpy.js full-stack framework. Learn multi-language support with NestJS backend, React SSR frontend, dynamic routing, locale detection, hydration, and scalable localization strategies for global applications.',
+      keywords:
+        'internationalization i18n, multi-language support, localization, NestJS i18n, React i18n, server-side rendering internationalization, Node.js framework, global applications, locale routing, language switching',
       canonical: 'https://www.harpyjs.org/docs/internationalization',
       openGraph: {
         title:
-          'Harpy.js Internationalization Guide - Full-Stack NestJS + React SSR',
+          'Harpy.js Internationalization Guide - NestJS & React SSR Framework',
         description:
-          'Step-by-step guide to add internationalization (i18n) in Harpy.js applications. Covers localization, SSR, dynamic routing, hydration, and best practices. Beta release.',
+          'Build truly global applications with Harpy.js i18n support. Learn multi-language implementation with NestJS backend, React frontend, SSR, automatic hydration, and best practices for scalable localization.',
         type: 'website',
         url: 'https://www.harpyjs.org/docs/internationalization',
+        image: 'https://harpyjs.com/og-image.png',
       },
       twitter: {
         card: 'summary_large_image',
-        title: 'Harpy.js Internationalization Guide',
+        title: 'Harpy.js Internationalization - NestJS & React SSR',
         description:
-          'Complete guide to implementing internationalization (i18n) in Harpy.js with NestJS + React SSR. Learn localization, routing, and hydration. Beta version.',
+          'Master multi-language support in full-stack applications. Complete i18n guide for NestJS + React SSR with dynamic routing, locale detection, and hydration.',
+        image: 'https://harpyjs.com/twitter-card.png',
       },
     },
   })

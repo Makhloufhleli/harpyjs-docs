@@ -15,23 +15,28 @@ export class GettingStartedController {
   @JsxRender(DocsPage, {
     layout: DashboardLayout,
     meta: {
-      title: 'Harpy.js Documentation - Full-Stack NestJS + React SSR (BETA)',
+      title:
+        'Harpy.js Documentation - Full-Stack NestJS & React SSR Framework Guide',
       description:
-        'Explore the complete Harpy.js documentation to build full-stack applications with NestJS and React SSR. Includes installation, architecture, JSX rendering, client-side hydration, i18n, routing, and deployment guides. Beta version.',
+        'Complete Harpy.js documentation for building high-performance full-stack applications with NestJS, React SSR, Node.js, and automatic hydration. Learn routing, i18n, performance optimization, and deployment strategies for enterprise applications.',
+      keywords:
+        'NestJS documentation, React SSR guide, full-stack framework, Node.js framework, server-side rendering, hydration, TypeScript web development, performance optimization, React framework, SSR best practices',
       canonical: 'https://harpyjs.com/docs',
       openGraph: {
         title:
-          'Harpy.js Documentation - Build Full-Stack Apps with NestJS + React SSR',
+          'Harpy.js Documentation - Full-Stack NestJS, React SSR & Node.js Framework',
         description:
-          'Master Harpy.js with comprehensive guides on SSR, client hydration, routing, i18n, and deployment. Build scalable, high-performance full-stack applications. Beta release.',
+          'Master building high-performance full-stack applications with Harpy.js. Comprehensive guides on NestJS + React SSR, automatic hydration, routing, internationalization, and deployment. Node.js framework for modern web development.',
         type: 'website',
         url: 'https://harpyjs.com/docs',
+        image: 'https://harpyjs.com/og-image.png',
       },
       twitter: {
         card: 'summary_large_image',
-        title: 'Harpy.js Documentation - Full-Stack NestJS + React SSR',
+        title: 'Harpy.js Documentation - NestJS + React SSR Framework',
         description:
-          'Complete guides to building full-stack apps with Harpy.js. Learn SSR, client-side hydration, routing, i18n, and deployment. Beta available.',
+          'Learn to build blazing-fast full-stack apps with NestJS, React SSR, and automatic hydration. Performance-optimized Node.js web framework with enterprise features.',
+        image: 'https://harpyjs.com/twitter-card.png',
       },
     },
   })

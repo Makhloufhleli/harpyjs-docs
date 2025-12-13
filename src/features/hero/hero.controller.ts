@@ -1,7 +1,7 @@
-import { JsxRender } from '@harpy-js/core';
+import { JsxRender, PageProps } from '@harpy-js/core';
 import { Controller, Get } from '@nestjs/common';
 import { HeroService } from './hero.service';
-import HeroPage, { type PageProps } from './views/hero-page';
+import HeroPage from './views/hero-page';
 import { getDictionary } from '../../i18n/get-dictionary';
 import { CurrentLocale } from '@harpy-js/i18n';
 
@@ -13,23 +13,27 @@ export class HeroController {
   @JsxRender(HeroPage, {
     meta: {
       title:
-        'Harpy.js - Modern Full-Stack NestJS Framework with React SSR (BETA)',
+        'Harpy.js - Full-Stack NestJS Framework with React SSR | Node.js + Next.js Alternative',
       description:
-        'Harpy.js is a next-gen full-stack framework built on NestJS with server-side React rendering, automatic client-side hydration, 1–7ms page loads, and SEO-optimized performance. Build scalable web applications effortlessly. Beta available now.',
+        'Harpy.js is a modern full-stack framework combining NestJS, React SSR, and Node.js for building high-performance web applications. An alternative to Next.js with automatic client-side hydration, sub-7ms page loads, and enterprise-grade features. Build scalable Node.js applications with React frontend seamlessly.',
+      keywords:
+        'NestJS, React SSR, Node.js framework, full-stack framework, Next.js alternative, React framework, server-side rendering, TypeScript framework, web development, Node.js web framework',
       canonical: 'https://www.harpyjs.org/',
       openGraph: {
-        title: 'Harpy.js - Modern Full-Stack NestJS Framework with React SSR',
+        title:
+          'Harpy.js - Full-Stack Node.js Framework with NestJS & React SSR',
         description:
-          'Create high-performance, SEO-friendly full-stack apps with Harpy.js. Powered by NestJS + React SSR, automatic hydration, and ultra-fast rendering. Join the beta today!',
+          'Build high-performance full-stack applications with Harpy.js. Combines NestJS backend with React server-side rendering, automatic hydration, and ultra-fast rendering. The Next.js alternative powered by Node.js.',
         type: 'website',
         url: 'https://www.harpyjs.org/',
+        image: 'https://harpyjs.com/og-image.png',
       },
       twitter: {
         card: 'summary_large_image',
-        title: 'Harpy.js - Full-Stack NestJS + React SSR Framework',
+        title: 'Harpy.js - Full-Stack Node.js & React Framework',
         description:
-          'Build blazing-fast, SEO-optimized full-stack apps with Harpy.js. NestJS backend, React SSR, automatic hydration, and 1–7ms render times. Beta release available.',
-        image: 'https://harpyjs.com/twitter-card.png', // optional: Twitter card image
+          'Build blazing-fast, SEO-optimized full-stack apps with Harpy.js. NestJS + React SSR + Node.js with automatic hydration and sub-7ms render times. A modern alternative to Next.js.',
+        image: 'https://harpyjs.com/twitter-card.png',
       },
     },
   })

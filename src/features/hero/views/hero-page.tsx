@@ -1,7 +1,8 @@
+import { type PageProps as CorePageProps } from '@harpy-js/core';
 import { Dictionary } from '../../../i18n/get-dictionary';
 import Logo from '../../../components/logo';
 
-export interface PageProps {
+export interface PageProps extends CorePageProps {
   items?: string[];
   dict: Dictionary;
   locale: string;
