@@ -41,6 +41,10 @@ export default function DashboardLayout({
           content="HarpyJS, JavaScript library, JS framework, web development, full-stack development, open source, Performance, NestJS, developer tools, web apps"
         />
         <meta name="description" content={description} />
+        <meta
+          name="google-site-verification"
+          content="zcekfuLv8Y4w_JxJiH6a0FlkcfrVFyLnlbZ0gM-CeNk"
+        />
         <link rel="canonical" href={canonical} />
 
         {/* Favicon and Icon Configuration */}
