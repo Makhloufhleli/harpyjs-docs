@@ -19,7 +19,7 @@ export class ExamplesService {
     navigationService.addItemToSection('examples', {
       id: 'examples',
       title: 'Live Examples',
-      href: '/examples',
+      href: '/docs/examples',
     });
   }
 }
