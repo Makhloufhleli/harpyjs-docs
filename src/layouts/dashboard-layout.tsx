@@ -155,7 +155,7 @@ export default function DashboardLayout({
               <nav className="px-6 py-6 space-y-8">
                 {sections.map((section) => (
                   <div key={section.id}>
-                    <h3 className="text-sm font-bold text-slate-900 mb-3 uppercase tracking-wider px-2">
+                    <h3 className="text-sm font-bold text-amber-700 mb-3 uppercase tracking-wider px-2">
                       {section.title}
                     </h3>
                     <ul className="space-y-1">
