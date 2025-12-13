@@ -26,14 +26,14 @@ export class HeroController {
           'Build high-performance full-stack applications with Harpy.js. Combines NestJS backend with React server-side rendering, automatic hydration, and ultra-fast rendering. The Next.js alternative powered by Node.js.',
         type: 'website',
         url: 'https://www.harpyjs.org/',
-        image: 'https://harpyjs.com/og-image.png',
+        image: 'https://harpyjs.org/favicon.png',
       },
       twitter: {
-        card: 'summary_large_image',
+        card: 'summary',
         title: 'Harpy.js - Full-Stack Node.js & React Framework',
         description:
           'Build blazing-fast, SEO-optimized full-stack apps with Harpy.js. NestJS + React SSR + Node.js with automatic hydration and sub-7ms render times. A modern alternative to Next.js.',
-        image: 'https://harpyjs.com/twitter-card.png',
+        image: 'https://harpyjs.org/twitter-card.jpg',
       },
     },
   })
