@@ -64,11 +64,9 @@ export default function DashboardLayout({
           content={twitter.description || description}
         />
         {twitter.image && <meta name="twitter:image" content={twitter.image} />}
-        <link
-          rel="shortcut icon"
-          href="/public/favicon.svg"
-          type="image/x-icon"
-        />
+        <link rel="shortcut icon" href="/favicon.svg" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="/favicon.svg" sizes="180x180" />
+        <link rel="manifest" href="/manifest.json" />
       </head>
       <body className="min-h-screen bg-gray-100 overflow-x-hidden max-w-full">
         {/* Mobile menu*/}
