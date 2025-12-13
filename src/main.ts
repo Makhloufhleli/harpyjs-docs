@@ -15,7 +15,11 @@ async function bootstrap() {
   );
 
   // Centralized Harpy setup: JSX engine, cookies, and static handlers
-  await setupHarpyApp(app, { layout: DefaultLayout, distDir: 'dist' });
+  await setupHarpyApp(app, {
+    layout: DefaultLayout,
+    distDir: 'dist',
+    publicDir: 'public',
+  });
 
   inject();
 
