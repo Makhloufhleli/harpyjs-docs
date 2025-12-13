@@ -1,8 +1,10 @@
 import CommandTabs from 'src/components/command-tabs';
+import CodeSnippet from '../../../components/code-snippet';
+import { type PageProps as CorePageProps } from '@harpy-js/core';
 import { Dictionary } from '../../../i18n/get-dictionary';
-import { Info } from 'lucide-react';
+import * as snippets from '../snippets';
 
-export interface PageProps {
+export interface PageProps extends CorePageProps {
   sections: any[];
   dict: Dictionary;
   locale: string;
@@ -17,21 +19,20 @@ export default function IstallationPage() {
         <section className="mb-12">
           <div className="flex flex-wrap items-center gap-3 md:gap-4 mb-4">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900">
-              Installation
+              Installation & Setup
             </h1>
           </div>
           <p className="text-xl text-slate-600 mb-6">
-            Install the Harpy CLI or integrate Harpy.js manually into an
-            existing project. This page covers system requirements, quick start
-            using the CLI, manual installation, detailed setup steps, and the
-            recommended project structure.
+            Get started with Harpy.js in minutes. Choose between using the CLI
+            to scaffold a new full-stack project or integrating Harpy.js into an
+            existing NestJS application for server-side React rendering.
           </p>
 
           <div className="bg-amber-50 border-l-4 border-amber-500 p-4 rounded mb-4">
             <p className="text-amber-900">
               <strong>Quick tip:</strong> The CLI is the fastest path to a
-              working project. Use manual install only if you need to integrate
-              Harpy.js into an existing codebase.
+              production-ready full-stack application. Use manual integration
+              only if you're adding Harpy.js to an existing NestJS project.
             </p>
           </div>
         </section>
@@ -150,252 +151,211 @@ yarn dev`,
             {/* Step 1 */}
             <div>
               <h3 className="text-2xl font-semibold text-slate-900 mb-3">
-                1. Install Dependencies
+                1. Install Core Dependencies
               </h3>
               <p className="text-slate-600 mb-3">
-                Add the core runtime and React (latest version recommended) to
-                your project.
+                Add the Harpy.js core runtime, React, NestJS, and required
+                adapters to your project. The core package includes the JSX
+                rendering engine, automatic hydration, and utilities for
+                server-side React rendering.
               </p>
 
-              <pre className="bg-slate-900 text-amber-400 rounded-lg p-4 overflow-x-auto mb-3 text-sm">
-                <code>{`
-pnpm add @harpy-js/core react react-dom`}</code>
-              </pre>
+              <CommandTabs
+                commands={{
+                  pnpm: snippets.INSTALL_PACKAGES,
+                  npm: snippets.INSTALL_NPM,
+                  yarn: snippets.INSTALL_YARN,
+                }}
+              />
 
               <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 text-sm text-slate-700">
-                <strong>Tip:</strong> Use pnpm for faster installs and
-                consistent lockfiles, but npm and yarn are also supported.
+                <strong>Package Breakdown:</strong>
+                <ul className="list-disc list-inside mt-2 space-y-1">
+                  <li>
+                    <code>@harpy-js/core</code> — JSX engine, hydration,
+                    routing, and decorators
+                  </li>
+                  <li>
+                    <code>@nestjs/platform-fastify</code> — Required adapter
+                    (Fastify only)
+                  </li>
+                  <li>
+                    <code>react react-dom</code> — UI framework (React 18+)
+                  </li>
+                </ul>
               </div>
             </div>
 
             {/* Step 2 */}
             <div>
               <h3 className="text-2xl font-semibold text-slate-900 mb-3">
-                2. Create a Layout Component
+                2. Create a Root Layout Component
               </h3>
               <p className="text-slate-600 mb-3">
-                Layouts render the common shell around pages (head tags, header,
-                footer, navigation) and receive metadata and hydration script
-                definitions.
+                Layouts wrap your pages and receive metadata (SEO tags, Open
+                Graph, Twitter), hydration scripts for client components, and
+                optional navigation sections. This is the HTML shell that
+                renders on the server.
               </p>
 
-              <pre className="bg-slate-900 text-amber-400 rounded-lg p-4 overflow-x-auto mb-3 text-sm">
-                <code>{`// layouts/layout.tsx
-import * as React from 'react';
-import { JsxLayoutProps } from '@harpy-js/core';
+              <CodeSnippet
+                code={snippets.LAYOUT_COMPONENT}
+                showLineNumbers
+                className="mb-3"
+              />
 
-export default function MainLayout({ children, meta, hydrationScripts, sections, lang }: JsxLayoutProps & { lang?: string }) {
-  const title = meta?.title ?? 'Harpy Framework';
-  const description = meta?.description;
-  const canonical = meta?.canonical;
-  const og = meta?.openGraph ?? {};
-  const twitter = meta?.twitter ?? {};
-  const chunkScripts = hydrationScripts || [];
-  
-  return (
-    <html lang={lang || 'en'}>
-      <head>
-        <title>{title}</title>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="/styles/styles.css" /> // 👈 Makes sure to add this for styling
-        <meta name="description" content={description} />
-        <link rel="canonical" href={canonical} />
-        {/* Open Graph tags */}
-        <meta property="og:title" content={og.title || title} />
-        <meta
-          property="og:description"
-          content={og.description || description}
-        />
-        <meta property="og:type" content={og.type || 'website'} />
-        {og.image && <meta property="og:image" content={og.image} />}
-        {og.url && <meta property="og:url" content={og.url} />}
-
-        {/* Twitter cards */}
-        <meta
-          name="twitter:card"
-          content={twitter.card || 'summary_large_image'}
-        />
-        <meta name="twitter:title" content={twitter.title || title} />
-        <meta
-          name="twitter:description"
-          content={twitter.description || description}
-        />
-        {twitter.image && <meta name="twitter:image" content={twitter.image} />}
-        <link rel="stylesheet" href="/styles/styles.css" />
-      </head>
-      <body>
-        <aside>
-          <nav className="px-6 py-6 space-y-8">
-            {sections.map((section) => (
-              <div key={section.id}>
-                <h3 >
-                  {section.title}
-                </h3>
-                <ul className="space-y-1">
-                  {section.items.map((item) => (
-                    <li key={item.id}>
-                      <a href={item.href} >
-                        {item.title}
-                      </a>
-                    </li>
-                  ))}
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded text-blue-900 text-sm">
+                <strong>Key Points:</strong>
+                <ul className="list-disc list-inside mt-2 space-y-1">
+                  <li>
+                    The layout receives SEO metadata from your controllers
+                  </li>
+                  <li>
+                    <code>hydrationScripts</code> contains auto-generated client
+                    component bundles
+                  </li>
+                  <li>
+                    This HTML is rendered on the server and sent as the initial
+                    response
+                  </li>
+                  <li>
+                    Client components hydrate automatically in the browser
+                  </li>
                 </ul>
-              </div>
-            ))}
-          </nav>
-        </aside>
-        <main>
-        {children}
-        <main>
-        {/* Auto-injected hydration scripts */}
-        {chunkScripts.map((script) => (
-          <script key={script.componentName} src={script.path}></script>
-        ))}
-      </body>
-    </html>
-  );
-}`}</code>
-              </pre>
-
-              <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded text-blue-900">
-                <strong>Note:</strong> the layout receives `sections` to build
-                dynamic navigation and `hydrationScripts` to load client chunks.
               </div>
             </div>
 
             {/* Step 3 */}
             <div>
               <h3 className="text-2xl font-semibold text-slate-900 mb-3">
-                3. Configure the Server Entry
+                3. Bootstrap Your NestJS Application
               </h3>
               <p className="text-slate-600 mb-3">
-                Register the JSX engine and static serving in your server
-                bootstrap. Example below shows the renderer being wired into an
-                Fastify server.
+                Configure your NestJS server to use Fastify adapter and
+                initialize the Harpy JSX rendering engine. The{' '}
+                <code className="bg-slate-100 px-2 py-1 rounded">
+                  setupHarpyApp
+                </code>{' '}
+                function handles JSX engine initialization, static file serving,
+                and automatic hydration setup.
               </p>
 
-              <pre className="bg-slate-900 text-amber-400 rounded-lg p-4 overflow-x-auto mb-3 text-sm">
-                <code>{`import { NestFactory } from '@nestjs/core';
-  import { AppModule } from './app.module';
-  import { withJsxEngine } from '@harpy-js/core';
-  import fastifyStatic from '@fastify/static';
-  import {
-    FastifyAdapter,
-    NestFastifyApplication,
-  } from '@nestjs/platform-fastify';
-   import DefaultLayout from './layouts/layout';
+              <CodeSnippet
+                code={snippets.BOOTSTRAP_MAIN}
+                showLineNumbers
+                className="mb-3"
+              />
 
+              <div className="bg-red-50 border-l-4 border-red-300 p-4 rounded text-red-900 mb-3">
+                <strong>⚠️ Critical Requirement:</strong> Harpy.js requires the{' '}
+                <strong>FastifyAdapter</strong>. Express and other adapters are
+                not supported. The JSX rendering engine is specifically
+                optimized for Fastify's performance characteristics.
+              </div>
 
-  async function bootstrap() {
-    const app = await NestFactory.create<NestFastifyApplication>(
-      AppModule,
-      new FastifyAdapter(),
-    );
-
-    // Set up JSX rendering engine
-    withJsxEngine(app, DefaultLayout);
-
-    // Register Fastify plugins
-    const fastify = app.getHttpAdapter().getInstance();
-
-    // Register static file serving
-    await fastify.register(fastifyStatic, {
-      root: path.join(process.cwd(), 'dist'),
-      prefix: '/',
-      decorateReply: false,
-    });
-
-    await app.listen(3000);
-  }
-  bootstrap();`}</code>
-              </pre>
-
-              <div className="bg-red-50 border-l-4 border-red-300 p-4 rounded text-red-900">
-                <Info className="size-6" /> <strong>Critical:</strong>
-                Harpy.js <u>will not work</u> unless you use{' '}
-                <strong>FastifyAdapter</strong>, the JSX rendering engine
-                specifically designed for Fastify.
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded text-blue-900">
+                <strong>What setupHarpyApp does:</strong>
+                <ul className="list-disc list-inside mt-2 space-y-1">
+                  <li>
+                    Registers the JSX rendering interceptor on all HTTP
+                    responses
+                  </li>
+                  <li>Configures automatic hydration script injection</li>
+                  <li>
+                    Sets up cookie middleware for client-side interactivity
+                  </li>
+                  <li>
+                    Initializes the NavigationService for routing management
+                  </li>
+                </ul>
               </div>
             </div>
 
             {/* Step 4 */}
             <div>
               <h3 className="text-2xl font-semibold text-slate-900 mb-3">
-                4. Add Decorators / Render Hooks
+                4. Create Controllers & Render JSX Pages
               </h3>
               <p className="text-slate-600 mb-3">
-                If you use a controller-based server (NestJS or similar), use
-                the provided decorator to render JSX pages from route handlers.
-                Otherwise, call the renderer directly from your route handlers.
+                Use the{' '}
+                <code className="bg-slate-100 px-2 py-1 rounded">
+                  @JsxRender
+                </code>{' '}
+                decorator to render React components as HTML on the server. Your
+                controller returns page data, and the decorator handles
+                rendering and automatic hydration.
               </p>
 
-              <pre className="bg-slate-900 text-amber-400 rounded-lg p-4 overflow-x-auto mb-3 text-sm">
-                <code>{`// controller example (conceptual)
-@Controller()
-  export class HomeController {
-    constructor(private readonly navigationService: NavigationService) {}
-  
-    @Get()
-    @JsxRender(Page, {
-      layout: CustomLayout, // 👈 Provide a specific layout here, otherwise DefaultLayout will be used
-      meta: {
-        title: 'your page title',
-        description:
-          'your page description',
-        canonical: 'https://your-site.com/your-page',
-        openGraph: {
-          title: 'OPen graph title',
-          description:
-            'Open graph description',
-          type: 'website',
-          url: 'https://your-site.com/your-page',
-        },
-        // Other meta data...
-      },
-    })
-    async home(@CurrentLocale() locale: string): Promise<PageProps> {
-      const dict = await getDictionary(locale); // 👈 Load translations
-      const sections = this.navigationService.getAllSections(); // 👈 Load navigation sections
-  
-      return {
-        sections,
-        dict,
-        locale,
-      };
-    }
-  }`}</code>
-              </pre>
+              <CodeSnippet
+                code={snippets.CONTROLLER_EXAMPLE}
+                showLineNumbers
+                className="mb-4"
+              />
 
-              <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded text-green-900 my-2">
-                <strong>Result:</strong> Pages render on the server with proper
-                head tags and can hydrate on the client.
+              <CodeSnippet
+                code={snippets.PAGE_VIEW_EXAMPLE}
+                showLineNumbers
+                className="mb-3"
+              />
+
+              <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded text-green-900 my-3">
+                <strong>✨ What Happens:</strong>
+                <ul className="list-disc list-inside mt-2 space-y-1">
+                  <li>NestJS calls your controller method</li>
+                  <li>
+                    <code>@JsxRender</code> renders HomePage component on the
+                    server
+                  </li>
+                  <li>HTML with proper head tags is sent to the browser</li>
+                  <li>
+                    Client components automatically hydrate for interactivity
+                  </li>
+                  <li>Instant first paint with full SEO support</li>
+                </ul>
               </div>
-              <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded text-blue-900">
-                <strong>Note:</strong> Check the internationalization and
-                routing docs for more details.
+
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded text-blue-900 text-sm">
+                <strong>Metadata Options:</strong> The <code>meta</code> field
+                supports <code>title</code>, <code>description</code>,{' '}
+                <code>keywords</code>, <code>canonical</code>,{' '}
+                <code>openGraph</code> (title, description, type, image, url),
+                and <code>twitter</code> (card, title, description, image).
               </div>
             </div>
 
             {/* Step 5 */}
             <div>
               <h3 className="text-2xl font-semibold text-slate-900 mb-3">
-                5. Start the Dev Server
+                5. Build & Run Your Application
               </h3>
               <p className="text-slate-600 mb-3">
-                Run the dev server and open your app in the browser:
+                Compile your TypeScript code and start the development server.
+                Harpy.js will automatically detect client components and
+                generate hydration bundles.
               </p>
 
-              <pre className="bg-slate-900 text-amber-400 rounded-lg p-4 overflow-x-auto mb-3 text-sm">
-                <code>{`pnpm dev
-# or
-npm run dev`}</code>
-              </pre>
+              <CodeSnippet
+                code={snippets.BUILD_COMMANDS}
+                showLineNumbers
+                className="mb-3"
+              />
 
-              <p className="text-slate-600 text-sm">
-                The dev server typically includes hot reload for server code and
-                fast client-side updates for components.
+              <p className="text-slate-600 text-sm mb-3">
+                Your application will be available at{' '}
+                <code className="bg-slate-100 px-2 py-1 rounded">
+                  http://localhost:3000
+                </code>
               </p>
+
+              <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 text-sm text-slate-700">
+                <strong>Development Features:</strong>
+                <ul className="list-disc list-inside mt-2 space-y-1">
+                  <li>Hot module reloading for controllers and pages</li>
+                  <li>Automatic hydration bundle regeneration</li>
+                  <li>Fast refresh for client components</li>
+                  <li>TypeScript compilation with source maps</li>
+                </ul>
+              </div>
             </div>
           </div>
         </section>
@@ -406,72 +366,98 @@ npm run dev`}</code>
             Recommended Project Structure
           </h2>
           <p className="text-slate-600 mb-4">
-            This layout-agnostic structure helps the Harpy rendering engine
-            discover pages, layouts and static assets.
+            Harpy.js follows a feature-based modular architecture optimized for
+            server-side rendering, automatic hydration, and scalability. This
+            structure keeps related code (controllers, views, services) together
+            while separating shared utilities.
           </p>
 
-          <pre className="bg-slate-900 text-amber-400 rounded-lg p-4 overflow-x-auto mb-6 text-sm">
-            <code>{`my-app/
-├─ src/
-│  ├─ assets/        # static assets (imust include styles.css)
-│  ├─ components/        # reusable UI components
-│  ├─ layouts/        # layout components (main, dashboard, etc.)
-│  ├─ dictionaries/        # translation dictionaries
-│  ├─ features/          # feature modules (auth, dashboard, etc.)
-│  ├─ i18n/          # internationalization config and utilities
-│  ├─ shared/          # shared module (must include navigation module)
-│  ├─ app.module.ts      # root module
-│  ├─ main.ts      # server bootstrap
-├─ public/            # static assets
-├─ package.json
-└─ tailwind.config.ts    # framework configuration (Tailwind CSS)`}</code>
-          </pre>
+          <CodeSnippet code={snippets.PROJECT_STRUCTURE} className="mb-6" />
 
-          <ul className="list-disc list-inside text-slate-600 space-y-2">
-            <li>
-              <strong>src/assets</strong> — Contains static assets such as
-              images, fonts, and required global files like{' '}
-              <code>styles.css</code>.
-            </li>
-            <li>
-              <strong>src/components</strong> — Reusable UI components shared
-              across the application.
-            </li>
-            <li>
-              <strong>src/layouts</strong> — Layout components (e.g., main
-              layout, dashboard layout) that wrap feature pages.
-            </li>
-            <li>
-              <strong>src/dictionaries</strong> — Translation dictionaries used
-              for multi-language support.
-            </li>
-            <li>
-              <strong>src/features</strong> — Feature-based modules (auth,
-              dashboard, admin, etc.), each grouping pages, hooks, and logic.
-            </li>
-            <li>
-              <strong>src/i18n</strong> — Internationalization configuration and
-              utilities.
-            </li>
-            <li>
-              <strong>src/shared</strong> — Shared module containing utilities,
-              adapters, and the required navigation module.
-            </li>
-            <li>
-              <strong>src/app.module.ts</strong> — The root application module.
-            </li>
-            <li>
-              <strong>src/main.ts</strong> — The main server bootstrap,
-              typically registering the Fastify adapter and SSR engine.
-            </li>
-            <li>
-              <strong>public/</strong> — Static public assets.
-            </li>
-            <li>
-              <strong>tailwind.config.ts</strong> — Tailwind CSS framework
-              configuration.
-            </li>
-          </ul>
+          <div className="space-y-3">
+            <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+              <h3 className="font-semibold text-slate-900 mb-2">
+                Core Directories
+              </h3>
+              <ul className="text-slate-600 space-y-2 text-sm">
+                <li>
+                  <code className="bg-white px-2 py-1 rounded">
+                    src/main.ts
+                  </code>{' '}
+                  — Bootstrap file that initializes NestJS with Fastify and
+                  setupHarpyApp()
+                </li>
+                <li>
+                  <code className="bg-white px-2 py-1 rounded">
+                    src/layouts/layout.tsx
+                  </code>{' '}
+                  — Root HTML layout receiving metadata and hydration scripts
+                </li>
+                <li>
+                  <code className="bg-white px-2 py-1 rounded">
+                    src/features/
+                  </code>{' '}
+                  — Domain-based modules (home, auth, docs) each with
+                  controllers, services, views
+                </li>
+                <li>
+                  <code className="bg-white px-2 py-1 rounded">
+                    src/components/
+                  </code>{' '}
+                  — Shared UI components (both server and client)
+                </li>
+                <li>
+                  <code className="bg-white px-2 py-1 rounded">dist/</code> —
+                  Build output including hydration manifests and client bundles
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <h3 className="font-semibold text-blue-900 mb-2">How It Works</h3>
+              <ol className="text-blue-900 space-y-1 text-sm list-decimal list-inside">
+                <li>
+                  Controllers use <code>@JsxRender()</code> to render pages
+                </li>
+                <li>Pages render on the server with proper HTML head tags</li>
+                <li>
+                  Client components marked with <code>'use client'</code> are
+                  detected and bundled
+                </li>
+                <li>Hydration scripts automatically inject into the layout</li>
+                <li>
+                  Browser loads HTML, hydrates client components, app becomes
+                  interactive
+                </li>
+              </ol>
+            </div>
+
+            <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+              <h3 className="font-semibold text-amber-900 mb-2">
+                Best Practices
+              </h3>
+              <ul className="text-amber-900 space-y-1 text-sm list-disc list-inside">
+                <li>
+                  Keep features self-contained with their own controllers,
+                  services, and views
+                </li>
+                <li>
+                  Use layouts for common UI shells (different layouts for public
+                  vs. dashboard pages)
+                </li>
+                <li>
+                  Place only reusable components in <code>src/components/</code>
+                </li>
+                <li>
+                  Mark interactive components with <code>'use client'</code> at
+                  the top
+                </li>
+                <li>
+                  Leverage NestJS services for business logic and data fetching
+                </li>
+              </ul>
+            </div>
+          </div>
         </section>
 
         {/* FOOTER / NAV */}
@@ -480,13 +466,13 @@ npm run dev`}</code>
             href="/docs"
             className="text-amber-600 hover:text-amber-700 font-medium"
           >
-            ← Back to Documentation
+            ← Back to Getting Started
           </a>
           <a
-            href="/docs/usage"
+            href="/docs/routing"
             className="text-amber-600 hover:text-amber-700 font-medium"
           >
-            Next: Usage →
+            Next: Routing →
           </a>
         </div>
       </div>

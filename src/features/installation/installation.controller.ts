@@ -15,22 +15,27 @@ export class InstallationController {
   @JsxRender(DocsPage, {
     layout: DashboardLayout,
     meta: {
-      title: 'Installation Guide - Harpy.js Framework (BETA)',
+      title: 'Harpy.js Installation Guide - NestJS, React SSR & Node.js Setup',
       description:
-        'Step-by-step installation guide for Harpy.js. Learn how to set up full-stack applications with NestJS and React SSR, including hydration, routing, i18n, and deployment. Beta version.',
+        'Quick-start installation guide for Harpy.js full-stack framework. Set up NestJS backend with React server-side rendering, automatic client hydration, and high-performance rendering in minutes. Includes TypeScript, routing, i18n, and production deployment.',
+      keywords:
+        'Harpy.js installation, NestJS setup, React SSR setup, Node.js framework, full-stack development, TypeScript framework, web development setup, server-side rendering setup, hydration configuration',
       canonical: 'https://www.harpyjs.org/docs/installation',
       openGraph: {
-        title: 'Harpy.js Installation Guide - Full-Stack NestJS + React SSR',
+        title:
+          'Harpy.js Installation - Full-Stack NestJS & React SSR Framework',
         description:
-          'Follow our comprehensive guide to install Harpy.js and start building high-performance full-stack apps with NestJS and React SSR. Beta release.',
+          'Get started with Harpy.js in minutes. Complete installation and setup guide for building full-stack applications with NestJS, React SSR, automatic hydration, and performance-first development.',
         type: 'website',
         url: 'https://www.harpyjs.org/docs/installation',
+        image: 'https://harpyjs.com/og-image.png',
       },
       twitter: {
         card: 'summary_large_image',
-        title: 'Harpy.js Installation Guide',
+        title: 'Harpy.js Installation - NestJS + React SSR',
         description:
-          'Complete step-by-step guide to install Harpy.js and build full-stack apps with NestJS + React SSR. Beta version available.',
+          'Step-by-step guide to install and configure Harpy.js framework. Set up full-stack development with NestJS, React SSR, and automatic hydration. Get started in minutes.',
+        image: 'https://harpyjs.com/twitter-card.png',
       },
     },
   })

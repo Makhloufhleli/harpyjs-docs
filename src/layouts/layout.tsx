@@ -29,9 +29,17 @@ export default function DefaultLayout({
         <link rel="stylesheet" href="/styles/styles.css" />
 
         {/* Favicon and Icon Configuration */}
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="apple-touch-icon" href="/favicon.svg" sizes="180x180" />
-        <link rel="manifest" href="/manifest.json" />
+        <link
+          rel="shortcut icon"
+          href="/public/favicon.svg"
+          type="image/x-icon"
+        />
+        <link
+          rel="apple-touch-icon"
+          href="/public/favicon.svg"
+          sizes="180x180"
+        />
+        <link rel="manifest" href="/public/manifest.json" />
         <meta name="theme-color" content="#1f2937" />
         <meta name="application-name" content="Harpy.js" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
