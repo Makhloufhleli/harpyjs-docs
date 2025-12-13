@@ -26,6 +26,10 @@ export default function DefaultLayout({
           name="keywords"
           content="HarpyJS, JavaScript library, JS framework, web development, full-stack development, open source, Performance, NestJS, developer tools, web apps"
         />
+        <meta
+          name="google-site-verification"
+          content="zcekfuLv8Y4w_JxJiH6a0FlkcfrVFyLnlbZ0gM-CeNk"
+        />
         <link rel="stylesheet" href="/styles/styles.css" />
 
         {/* Favicon and Icon Configuration */}
