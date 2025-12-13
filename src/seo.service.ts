@@ -14,7 +14,7 @@ export class SeoService extends BaseSeoService {
         priority: 1.0,
       },
       {
-        url: `${this.baseUrl}/docs/getting-started`,
+        url: `${this.baseUrl}/docs`,
         lastModified: now,
         changeFrequency: 'weekly',
         priority: 0.9,
@@ -33,6 +33,12 @@ export class SeoService extends BaseSeoService {
       },
       {
         url: `${this.baseUrl}/docs/internationalization`,
+        lastModified: now,
+        changeFrequency: 'weekly',
+        priority: 0.8,
+      },
+      {
+        url: `${this.baseUrl}/docs/examples`,
         lastModified: now,
         changeFrequency: 'weekly',
         priority: 0.8,

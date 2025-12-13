@@ -6,7 +6,7 @@ import { NavigationService } from '@harpy-js/core';
 import { getDictionary } from '../../i18n/get-dictionary';
 import DashboardLayout from '../../layouts/dashboard-layout';
 
-@Controller()
+@Controller('docs')
 export class ExamplesController {
   constructor(private readonly navigationService: NavigationService) {}
 
