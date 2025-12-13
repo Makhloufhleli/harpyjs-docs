@@ -5,11 +5,20 @@
       "src": "dist/main.js",
       "use": "@vercel/node",
       "config": {
-        "includeFiles": ["dist/**"]
+        "includeFiles": [
+          "dist/**",
+          "public/**",
+          "google1398675d6f9b2930.html"
+        ]
       }
     }
   ],
   "routes": [
+    { "src": "/google1398675d6f9b2930.html", "dest": "dist/google1398675d6f9b2930.html" },
+    { "src": "/manifest.json", "dest": "dist/manifest.json" },
+    { "src": "/favicon.svg", "dest": "dist/favicon.svg" },
+    { "src": "/favicon.png", "dest": "dist/favicon.png" },
+    { "src": "/twitter-card.jpg", "dest": "dist/twitter-card.jpg" },
     { "src": "/(.*)", "dest": "dist/main.js" }
   ]
 }
