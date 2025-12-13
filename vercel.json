@@ -19,6 +19,7 @@
     { "src": "/favicon.svg", "dest": "dist/favicon.svg" },
     { "src": "/favicon.png", "dest": "dist/favicon.png" },
     { "src": "/twitter-card.jpg", "dest": "dist/twitter-card.jpg" },
+    { "comment": "All dynamic routes including /robots.txt and /sitemap.xml are handled by NestJS" },
     { "src": "/(.*)", "dest": "dist/main.js" }
   ]
 }

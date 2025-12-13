@@ -8,7 +8,8 @@ import { RoutingDocsModule } from './features/routing/routing.module';
 import { InternationalizationModule } from './features/internationalization/internationalization.module';
 import { i18nConfig } from './i18n/i18n.config';
 import { InstallationModule } from './features/installation/installation.module';
-import { RouterModule } from '@harpy-js/core';
+import { RouterModule, SeoModule } from '@harpy-js/core';
+import { SeoService } from './seo.service';
 
 @Module({
   imports: [
@@ -28,6 +29,10 @@ import { RouterModule } from '@harpy-js/core';
     InstallationModule,
     RoutingDocsModule,
     InternationalizationModule,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+    SeoModule.forRootWithService(SeoService, {
+      baseUrl: 'https://harpyjs.org',
+    }),
   ],
   controllers: [],
   providers: [
