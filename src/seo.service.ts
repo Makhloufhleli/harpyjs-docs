@@ -32,6 +32,12 @@ export class SeoService extends BaseSeoService {
         priority: 0.8,
       },
       {
+        url: `${this.baseUrl}/docs/seo`,
+        lastModified: now,
+        changeFrequency: 'weekly',
+        priority: 0.8,
+      },
+      {
         url: `${this.baseUrl}/docs/internationalization`,
         lastModified: now,
         changeFrequency: 'weekly',
