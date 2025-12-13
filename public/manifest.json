@@ -1,39 +1,47 @@
 {
   "name": "Harpy.js - Full-Stack NestJS + React Framework",
   "short_name": "Harpy.js",
-  "description": "A powerful NestJS + React framework with automatic hydration. Built for speed, precision, and adaptability.",
+  "description": "A powerful NestJS + React framework, server-side rendering. Built for speed, precision, and adaptability.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "background_color": "#ffffff",
   "theme_color": "#1f2937",
-  "scope": "/",
   "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
     {
       "src": "/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
-    },
-    {
-      "src": "/favicon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "maskable"
     }
   ],
-  "categories": ["productivity", "utilities"],
+  "categories": ["productivity", "development"],
   "screenshots": [
     {
-      "src": "/favicon.svg",
+      "src": "/favicon.png",
       "sizes": "540x720",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "form_factor": "narrow"
     },
     {
-      "src": "/favicon.svg",
+      "src": "/favicon.png",
       "sizes": "1280x720",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "form_factor": "wide"
     }
-  ]
+  ],
+  "prefer_related_applications": false
 }

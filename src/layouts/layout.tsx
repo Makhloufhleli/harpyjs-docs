@@ -29,8 +29,9 @@ export default function DefaultLayout({
         <link rel="stylesheet" href="/styles/styles.css" />
 
         {/* Favicon and Icon Configuration */}
-        <link rel="shortcut icon" href="/favicon.svg" type="image/x-icon" />
-        <link rel="apple-touch-icon" href="/favicon.svg" sizes="180x180" />
+        <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+        <link rel="icon" href="/favicon.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/favicon.png" sizes="180x180" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#1f2937" />
         <meta name="application-name" content="Harpy.js" />
@@ -51,21 +52,32 @@ export default function DefaultLayout({
           content={og.description || description}
         />
         <meta property="og:type" content={og.type || 'website'} />
-        <meta property="og:image" content={og.image || '/favicon.svg'} />
-        <meta property="og:image:type" content="image/svg+xml" />
+        <meta
+          property="og:image"
+          content={og.image || 'https://harpyjs.org/favicon.png'}
+        />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:site_name" content="Harpy.js" />
+        <meta property="og:locale" content="en_US" />
         {og.url && <meta property="og:url" content={og.url} />}
 
         {/* Twitter cards */}
-        <meta
-          name="twitter:card"
-          content={twitter.card || 'summary_large_image'}
-        />
+        <meta name="twitter:card" content={twitter.card || 'summary'} />
+        <meta name="twitter:creator" content="@harpy_js" />
         <meta name="twitter:title" content={twitter.title || title} />
         <meta
           name="twitter:description"
           content={twitter.description || description}
         />
-        <meta name="twitter:image" content={twitter.image || '/favicon.svg'} />
+        <meta
+          name="twitter:image"
+          content={twitter.image || 'https://harpyjs.org/twitter-card.jpg'}
+        />
+
+        {/* Additional social meta tags */}
+        <meta name="robots" content="index, follow" />
+        <meta name="language" content="English" />
+        <meta name="revisit-after" content="7 days" />
       </head>
       <body className="bg-slate-50 overflow-x-hidden">
         {/* Header */}
