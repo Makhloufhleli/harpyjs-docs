@@ -2,8 +2,8 @@ import * as React from 'react';
 import { JsxLayoutProps } from '@harpy-js/core';
 import MobileMenu from './components/MobileMenu';
 import { NavSection } from './types/nav.types';
-import Logo from 'src/components/logo';
 import Link from '@harpy-js/core/client/Link';
+import Logo from 'src/components/logo';
 
 /**
  * Dashboard Layout - Sidebar layout for admin/dashboard pages
@@ -90,7 +90,7 @@ export default function DashboardLayout({
         />
         <meta
           name="twitter:image"
-          content={twitter.image || 'https://harpyjs.org/twitter-card.jpg'}
+          content={twitter.image || 'https://harpyjs.org/twitter-card.png'}
         />
 
         {/* Additional social meta tags */}
@@ -191,7 +191,7 @@ export default function DashboardLayout({
                       Harpy.js
                     </span>{' '}
                     - Soar above the competition
-                    <Logo className="inline size-0.5 ml-1" />
+                    <Logo className="size-12" />
                   </p>
                 </div>
               </div>

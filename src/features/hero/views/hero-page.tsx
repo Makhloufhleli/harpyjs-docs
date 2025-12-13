@@ -1,6 +1,5 @@
 import { type PageProps as CorePageProps } from '@harpy-js/core';
 import { Dictionary } from '../../../i18n/get-dictionary';
-import Logo from '../../../components/logo';
 
 export interface PageProps extends CorePageProps {
   items?: string[];
@@ -11,31 +10,9 @@ export interface PageProps extends CorePageProps {
 export default function HeroPage() {
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      {/* Background Image Layer */}
-      {/* <div
-        className="
-          absolute inset-0 
-          bg-[url('/public/assets/harpy-background.webp')] 
-          bg-no-repeat bg-cover
-          bg-fixed
-          opacity-50
-          mask-[linear-gradient(to_bottom,white,transparent)]
-          bg-position-[top_60px]
-          sm:bg-position-[top_40px]
-          md:bg-position-[top_20px] 
-          lg:bg-top
-          xl:bg-top 
-        "
-      ></div> */}
-
       {/* Hero Section */}
       <div className="relative z-10 container mx-auto max-w-7xl px-4 pt-20 pb-32">
         <div className="text-center mb-16">
-          {/* Logo */}
-          <div className="flex justify-center mb-6">
-            <Logo width={60} height={60} />
-          </div>
-
           {/* Title */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6">
             <span className="bg-linear-to-r from-amber-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
@@ -50,13 +27,6 @@ export default function HeroPage() {
           <p className="text-lg sm:text-xl md:text-2xl text-slate-300 mb-4 font-light px-4">
             Full-Stack NestJS Framework with React SSR
           </p>
-
-          {/* Description */}
-          {/* <p className="text-lg text-slate-400 max-w-3xl mx-auto mb-12">
-            Build powerful full-stack applications leveraging the NestJS
-            ecosystem with server-side React rendering and automatic client-side
-            hydration.
-          </p> */}
 
           {/* CTA Buttons */}
           <div className="flex flex-wrap justify-center gap-4 mb-8">
