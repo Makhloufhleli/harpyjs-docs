@@ -1,5 +1,8 @@
 import { type PageProps as CorePageProps } from '@harpy-js/core';
 import { Dictionary } from '../../../i18n/get-dictionary';
+import CodeSnippet from '../../../components/code-snippet';
+import * as snippets from '../snippets';
+import CommandTabs from 'src/components/command-tabs';
 
 export interface PageProps extends CorePageProps {
   sections: any[];
@@ -22,20 +25,11 @@ export default function I18nPage() {
             </span>
           </div>
           <p className="text-lg md:text-xl text-slate-600 mb-6">
-            Harpy.js comes with built-in internationalization support, unlike
-            many frameworks that require third-party libraries. Build
-            multilingual applications with ease using our dictionary-based
-            translation system.
+            Harpy.js comes with built-in internationalization support, enables
+            you to configure the routing and rendering of content to support
+            multiple languages. Making your site adaptive to different locales
+            includes translated content (localization).
           </p>
-          <div className="bg-purple-50 border-l-4 border-purple-500 p-4 rounded mb-4">
-            <p className="text-purple-900">
-              <strong>🌍 Why Built-in i18n Matters:</strong> Many modern
-              frameworks overlook internationalization, forcing developers to
-              integrate complex third-party solutions. Harpy.js includes i18n as
-              a core feature, providing seamless multilingual support out of the
-              box.
-            </p>
-          </div>
           <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded">
             <p className="text-green-900">
               <strong>✨ Key Features:</strong> Type-safe translations,
@@ -44,62 +38,131 @@ export default function I18nPage() {
             </p>
           </div>
         </section>
-
-        {/* Why Harpy.js i18n? */}
-        <section id="why-built-in" className="mb-16">
-          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
-            Why Harpy.js Has Built-in i18n
-          </h2>
-          <p className="text-slate-600 mb-6">
-            Unlike popular frameworks such as Next.js (which only added i18n
-            routing in v10+) or Create React App (which requires react-i18next
-            or similar), Harpy.js includes internationalization as a fundamental
-            feature from day one.
-          </p>
-
-          <div className="grid md:grid-cols-2 gap-4 mb-6">
-            <div className="bg-slate-50 border border-slate-200 rounded-lg p-6">
-              <h3 className="font-bold text-slate-900 mb-2 flex items-center gap-2">
-                <span className="text-2xl">❌</span>
-                <span>Other Frameworks</span>
-              </h3>
-              <ul className="space-y-2 text-sm text-slate-600">
-                <li>• Require external libraries (react-intl, i18next)</li>
-                <li>• Complex setup and configuration</li>
-                <li>• Multiple competing solutions</li>
-                <li>• Additional bundle size</li>
-                <li>• Inconsistent patterns across projects</li>
-              </ul>
-            </div>
-
-            <div className="bg-green-50 border border-green-500 rounded-lg p-6">
-              <h3 className="font-bold text-green-900 mb-2 flex items-center gap-2">
-                <span className="text-2xl">✅</span>
-                <span>Harpy.js</span>
-              </h3>
-              <ul className="space-y-2 text-sm text-green-900">
-                <li>• Built into the core framework</li>
-                <li>• Zero configuration needed</li>
-                <li>• Consistent approach across all projects</li>
-                <li>• Optimized and lightweight</li>
-                <li>• Type-safe by design</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
         {/* Setup */}
         <section id="i18n-setup" className="mb-16">
           <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
             Setting Up i18n
           </h2>
-          <p className="text-slate-600 mb-4">
-            i18n is already configured in your Harpy.js project! Just add your
-            translation dictionaries and start using them.
-          </p>
+
+          <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded mb-6">
+            <p className="text-blue-900">
+              <strong>ℹ️ Initialization Check:</strong> If you initialized your
+              Harpy.js project with the CLI and selected <strong>yes</strong>{' '}
+              for i18n integration, i18n is already configured! You can skip to{' '}
+              <a
+                href="#create-dictionaries"
+                className="underline font-semibold"
+              >
+                Create Dictionary Files
+              </a>
+              . If not, follow the installation steps below.
+            </p>
+            <p className="text-blue-900 mb-3 mt-3">
+              <strong>🍪 Cookies in Harpy.js:</strong> The Harpy.js framework
+              engine automatically enables cookies through setupHarpyApp to
+              persist the user's language preference across sessions. Here's how
+              it works:
+            </p>
+            <ul className="list-disc list-inside text-blue-900 space-y-2 text-sm">
+              <li>
+                <strong>Locale Detection Priority:</strong> When a request
+                arrives, the I18nInterceptor checks in this order:
+                <ol className="list-decimal list-inside ml-6 mt-1 space-y-1">
+                  <li>URL source (header or query parameter)</li>
+                  <li>
+                    Locale cookie (if user previously selected a language)
+                  </li>
+                  <li>Accept-Language header (browser preference)</li>
+                  <li>Default locale (fallback)</li>
+                </ol>
+              </li>
+              <li>
+                <strong>Cookie Setting:</strong> When a locale is detected from
+                the URL (not from a cookie), the I18nInterceptor automatically
+                sets a cookie with that locale for 1 year.
+              </li>
+              <li>
+                <strong>Persistent Experience:</strong> On the user's next
+                visit, the cookie is read automatically, so they'll see your
+                site in their previously selected language without needing to
+                specify it again.
+              </li>
+              <li>
+                <strong>setupHarpyApp:</strong> The setupHarpyApp function
+                enables Fastify's cookie parser, which is required to read and
+                write cookies in your Harpy.js application.
+              </li>
+            </ul>
+          </div>
 
           <h3 className="text-xl font-semibold text-slate-900 mb-3">
-            1. Create Dictionary Files
+            Installation (if not already configured)
+          </h3>
+
+          <p className="text-slate-600 mb-4">
+            If you didn't enable i18n during CLI initialization, install and
+            configure it manually:
+          </p>
+
+          <p className="text-slate-600 mb-4">
+            <strong>1. Install the i18n package:</strong>
+          </p>
+
+          <CommandTabs
+            commands={{
+              pnpm: snippets.INSTALL_PNPM,
+              npm: snippets.INSTALL_NPM,
+              yarn: snippets.INSTALL_YARN,
+            }}
+          />
+
+          <p className="text-slate-600 mb-4 mt-6">
+            <strong>2. Create i18n configuration:</strong>
+          </p>
+
+          <CodeSnippet
+            code={snippets.I18N_CONFIG}
+            showLineNumbers
+            className="mb-6"
+          />
+          <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded my-4">
+            <p className="text-blue-900">
+              <strong>💡 URL Pattern Explanation:</strong>
+            </p>
+            <ul className="list-disc list-inside text-blue-900 mt-2 space-y-1">
+              <li>
+                <strong>header:</strong> Locale from Accept-Language header
+                (cleaner URLs)
+              </li>
+              <li>
+                <strong>query:</strong> Locale from query param like ?lang=fr
+              </li>
+            </ul>
+          </div>
+
+          <p className="text-slate-600 mb-4">
+            <strong>3. Create dictionary loader:</strong>
+          </p>
+
+          <CodeSnippet
+            code={snippets.GET_DICTIONARY}
+            showLineNumbers
+            className="mb-6"
+          />
+
+          <p className="text-slate-600 mb-4">
+            <strong>4. Import I18nModule in your app module:</strong>
+          </p>
+
+          <CodeSnippet
+            code={snippets.APP_MODULE_I18N}
+            showLineNumbers
+            className="mb-6"
+          />
+
+          <div id="create-dictionaries" />
+          <h3 className="text-xl font-semibold text-slate-900 mb-3 mt-8">
+            Creating Dictionary Files
           </h3>
           <p className="text-slate-600 mb-4">
             Create JSON files for each language in the{' '}
@@ -113,112 +176,15 @@ export default function I18nPage() {
             <p className="text-sm text-slate-500 mb-2">
               src/dictionaries/en.json
             </p>
-            <pre className="bg-slate-900 text-amber-400 rounded-lg p-4 overflow-x-auto text-sm">
-              <code>{`{
-  "welcome": "Welcome",
-  "home": "Home",
-  "about": "About",
-  "hero": {
-    "title": "Welcome to Harpy",
-    "subtitle": "A powerful NestJS + React framework",
-    "description": "Built for speed, precision, and adaptability"
-  },
-  "features": {
-    "title": "Why Choose Harpy?",
-    "lightning": {
-      "title": "Lightning Fast",
-      "description": "Optimized SSR with automatic hydration"
-    }
-  },
-  "demo": {
-    "title": "Try It Out",
-    "counter": "Counter",
-    "clicks": "clicks"
-  }
-}`}</code>
-            </pre>
+
+            <CodeSnippet code={snippets.SETUP_DICTIONARY_EN} className="mb-6" />
           </div>
 
           <div className="mb-6">
             <p className="text-sm text-slate-500 mb-2">
               src/dictionaries/fr.json
             </p>
-            <pre className="bg-slate-900 text-amber-400 rounded-lg p-4 overflow-x-auto text-sm">
-              <code>{`{
-  "welcome": "Bienvenue",
-  "home": "Accueil",
-  "about": "À propos",
-  "hero": {
-    "title": "Bienvenue sur Harpy",
-    "subtitle": "Un puissant framework NestJS + React",
-    "description": "Conçu pour la vitesse, la précision et l'adaptabilité"
-  },
-  "features": {
-    "title": "Pourquoi choisir Harpy?",
-    "lightning": {
-      "title": "Ultra Rapide",
-      "description": "SSR optimisé avec hydratation automatique"
-    }
-  },
-  "demo": {
-    "title": "Essayez-le",
-    "counter": "Compteur",
-    "clicks": "clics"
-  }
-}`}</code>
-            </pre>
-          </div>
-
-          <h3 className="text-xl font-semibold text-slate-900 mb-3 mt-8">
-            2. Configure Dictionary Loader
-          </h3>
-          <p className="text-slate-600 mb-4">
-            Update{' '}
-            <code className="bg-slate-100 px-2 py-1 rounded">
-              src/i18n/get-dictionary.ts
-            </code>{' '}
-            to include your languages:
-          </p>
-
-          <pre className="bg-slate-900 text-amber-400 rounded-lg p-4 overflow-x-auto mb-6 text-sm">
-            <code>{`const dictionaries = {
-  en: () =>
-    import('../dictionaries/en.json', { with: { type: 'json' } }).then(
-      (module) => module.default,
-    ),
-  fr: () =>
-    import('../dictionaries/fr.json', { with: { type: 'json' } }).then(
-      (module) => module.default,
-    ),
-  es: () =>
-    import('../dictionaries/es.json', { with: { type: 'json' } }).then(
-      (module) => module.default,
-    ),
-};
-
-export type Dictionary = Awaited<ReturnType<typeof dictionaries.en>>;
-
-const dictionaryCache = new Map<string, Dictionary>();
-
-export const getDictionary = async (locale: string): Promise<Dictionary> => {
-  if (dictionaryCache.has(locale)) {
-    return dictionaryCache.get(locale)!;
-  }
-
-  const dict = await (dictionaries[locale as keyof typeof dictionaries]?.() ?? 
-                      dictionaries.en());
-  
-  dictionaryCache.set(locale, dict);
-  return dict;
-};`}</code>
-          </pre>
-
-          <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
-            <p className="text-blue-900">
-              <strong>💡 Performance Tip:</strong> Dictionaries are
-              automatically cached in memory after first load, ensuring fast
-              translation lookups on subsequent requests.
-            </p>
+            <CodeSnippet code={snippets.SETUP_DICTIONARY_FR} className="mb-6" />
           </div>
         </section>
 
@@ -235,69 +201,41 @@ export const getDictionary = async (locale: string): Promise<Dictionary> => {
           <h3 className="text-xl font-semibold text-slate-900 mb-3">
             In Your Controller
           </h3>
-          <pre className="bg-slate-900 text-amber-400 rounded-lg p-4 overflow-x-auto mb-6 text-sm">
-            <code>{`import { Controller, Get } from '@nestjs/common';
-import { JsxRender } from '@harpy-js/core';
-import HomePage from './views/homepage';
-import { getDictionary } from '../i18n/get-dictionary';
+          <p className="text-slate-600 mb-4">
+            Use the{' '}
+            <code className="bg-slate-100 px-2 py-1 rounded">
+              @CurrentLocale()
+            </code>{' '}
+            decorator to inject the current locale:
+          </p>
 
-@Controller()
-export class HomeController {
-  @Get()
-  @JsxRender(HomePage)
-  async home() {
-    // Load dictionary for current locale
-    const dict = await getDictionary('en');
-    
-    return {
-      dict,
-      locale: 'en',
-    };
-  }
+          <CodeSnippet
+            code={snippets.I18N_CONTROLLER}
+            showLineNumbers
+            className="mb-6"
+          />
 
-  @Get(':locale')
-  @JsxRender(HomePage)
-  async homeWithLocale(@Param('locale') locale: string) {
-    // Dynamic locale from URL
-    const dict = await getDictionary(locale);
-    
-    return {
-      dict,
-      locale,
-    };
-  }
-}`}</code>
-          </pre>
+          <div className="bg-amber-50 border-l-4 border-amber-500 p-4 rounded mb-6">
+            <p className="text-amber-900">
+              <strong>🎯 How it Works:</strong> The I18nInterceptor
+              automatically detects the locale from your configured URL pattern
+              (header or query) and stores it in the request. The{' '}
+              <code className="bg-amber-100 px-2 py-1 rounded">
+                @CurrentLocale()
+              </code>{' '}
+              decorator retrieves it for you.
+            </p>
+          </div>
 
           <h3 className="text-xl font-semibold text-slate-900 mb-3 mt-8">
             In Your View Component
           </h3>
-          <pre className="bg-slate-900 text-amber-400 rounded-lg p-4 overflow-x-auto mb-6 text-sm">
-            <code>{`import { Dictionary } from '../i18n/get-dictionary';
 
-export interface PageProps {
-  dict: Dictionary;
-  locale: string;
-}
-
-export default function HomePage({ dict, locale }: PageProps) {
-  return (
-    <div>
-      <h1>{dict.hero.title}</h1>
-      <p>{dict.hero.subtitle}</p>
-      <p>{dict.hero.description}</p>
-      
-      <section>
-        <h2>{dict.features.title}</h2>
-        <div>
-          <h3>{dict.features.lightning.title}</h3>
-          <p>{dict.features.lightning.description}</p>
-        </div>
-      </section>
-    </div>
-  );
-}`}</code>
-          </pre>
+          <CodeSnippet
+            code={snippets.I18N_VIEW}
+            showLineNumbers
+            className="mb-6"
+          />
 
           <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded">
             <p className="text-green-900">
@@ -305,6 +243,11 @@ export default function HomePage({ dict, locale }: PageProps) {
               <code className="bg-green-100 px-2 py-1 rounded">Dictionary</code>{' '}
               type is automatically inferred from your English dictionary,
               providing autocomplete and type checking for all translation keys!
+              Always extend{' '}
+              <code className="bg-green-100 px-2 py-1 rounded">
+                CorePageProps
+              </code>{' '}
+              from @harpy-js/core.
             </p>
           </div>
         </section>
@@ -315,81 +258,69 @@ export default function HomePage({ dict, locale }: PageProps) {
             Client-Side Translations
           </h2>
           <p className="text-slate-600 mb-6">
-            For interactive components marked with{' '}
-            <code className="bg-slate-100 px-2 py-1 rounded">'use client'</code>
-            , use the{' '}
-            <code className="bg-slate-100 px-2 py-1 rounded">useI18n</code> hook
-            to access translations and switch locales.
+            Client components receive translations via props passed from the
+            server. Since Harpy.js uses server-side rendering, all translations
+            are available from the start with full type safety.
           </p>
 
           <h3 className="text-xl font-semibold text-slate-900 mb-3">
-            Creating a Language Switcher
+            Interactive Component Example
           </h3>
-          <pre className="bg-slate-900 text-amber-400 rounded-lg p-4 overflow-x-auto mb-6 text-sm">
-            <code>{`'use client';
 
-import { useI18n } from '@harpy-js/core/client';
-
-export function LanguageSwitcher() {
-  const { locale, switchLocale, t } = useI18n();
-
-  return (
-    <div className="flex gap-2">
-      <button
-        onClick={() => switchLocale('en')}
-        className={\`px-3 py-1 rounded \${
-          locale === 'en' 
-            ? 'bg-blue-600 text-white' 
-            : 'bg-gray-200 text-gray-700'
-        }\`}
-      >
-        English
-      </button>
-      <button
-        onClick={() => switchLocale('fr')}
-        className={\`px-3 py-1 rounded \${
-          locale === 'fr' 
-            ? 'bg-blue-600 text-white' 
-            : 'bg-gray-200 text-gray-700'
-        }\`}
-      >
-        Français
-      </button>
-    </div>
-  );
-}`}</code>
-          </pre>
+          <CodeSnippet
+            code={snippets.CLIENT_COMPONENT}
+            showLineNumbers
+            className="mb-6"
+          />
 
           <h3 className="text-xl font-semibold text-slate-900 mb-3 mt-8">
-            Using Translations in Client Components
+            Language Switcher
           </h3>
-          <pre className="bg-slate-900 text-amber-400 rounded-lg p-4 overflow-x-auto mb-6 text-sm">
-            <code>{`'use client';
+          <p className="text-slate-600 mb-4">
+            Create a language switcher component using the{' '}
+            <code className="bg-slate-100 px-2 py-1 rounded">useI18n()</code>{' '}
+            hook from{' '}
+            <code className="bg-slate-100 px-2 py-1 rounded">
+              @harpy-js/core/client
+            </code>
+            :
+          </p>
 
-import { useI18n } from '@harpy-js/core/client';
-import { useState } from 'react';
+          <div className="bg-amber-50 border-l-4 border-amber-500 p-4 rounded mb-6">
+            <p className="text-amber-900 mb-2">
+              <strong>🎣 useI18n Hook:</strong> The useI18n hook provides the{' '}
+              <code className="bg-amber-100 px-2 py-1 rounded">
+                switchLocale()
+              </code>{' '}
+              function that correctly integrates with your i18n configuration.
+            </p>
+            <ul className="list-disc list-inside text-amber-900 space-y-1 text-sm">
+              <li>
+                The hook automatically detects your configured URL pattern
+                (header or query)
+              </li>
+              <li>
+                It communicates with the I18nInterceptor to trigger locale
+                detection
+              </li>
+              <li>It works seamlessly with your cookie persistence system</li>
+              <li>
+                When called, it triggers a page reload to fetch the correct
+                dictionary for the new locale
+              </li>
+            </ul>
+          </div>
 
-export function Counter() {
-  const { t } = useI18n();
-  const [count, setCount] = useState(0);
-
-  return (
-    <div>
-      <h3>{t('demo.counter')}</h3>
-      <p>{count} {t('demo.clicks')}</p>
-      <button onClick={() => setCount(count + 1)}>
-        {t('demo.increment')}
-      </button>
-    </div>
-  );
-}`}</code>
-          </pre>
-
-          <div className="bg-amber-50 border-l-4 border-amber-500 p-4 rounded">
-            <p className="text-amber-900">
-              <strong>⚠️ Important:</strong> When switching locales on the
-              client, the page will reload to fetch the new dictionary from the
-              server. This ensures SSR consistency and optimal performance.
+          <CodeSnippet
+            code={snippets.LANGUAGE_SWITCHER}
+            showLineNumbers
+            className="mb-6"
+          />
+          <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded mb-6">
+            <p className="text-blue-900">
+              <strong>💡 Tip:</strong> Always set a default locale in your
+              I18nModuleOptions configuration to ensure a consistent experience
+              for users without a locale cookie or URL parameter.
             </p>
           </div>
         </section>
@@ -400,124 +331,15 @@ export function Counter() {
             Advanced Features
           </h2>
 
-          <h3 className="text-xl font-semibold text-slate-900 mb-3">
-            Locale Detection
-          </h3>
-          <p className="text-slate-600 mb-4">
-            You can detect the user's preferred locale from various sources:
-          </p>
-
-          <pre className="bg-slate-900 text-amber-400 rounded-lg p-4 overflow-x-auto mb-6 text-sm">
-            <code>{`import { Controller, Get, Req } from '@nestjs/common';
-import { Request } from 'express';
-
-@Controller()
-export class HomeController {
-  @Get()
-  @JsxRender(HomePage)
-  async home(@Req() req: Request) {
-    // 1. From URL parameter
-    const localeFromUrl = req.params.locale;
-    
-    // 2. From cookie
-    const localeFromCookie = req.cookies?.locale;
-    
-    // 3. From Accept-Language header
-    const localeFromHeader = req.headers['accept-language']?.split(',')[0]?.split('-')[0];
-    
-    // 4. Fallback to default
-    const locale = localeFromUrl || 
-                   localeFromCookie || 
-                   localeFromHeader || 
-                   'en';
-    
-    const dict = await getDictionary(locale);
-    
-    return { dict, locale };
-  }
-}`}</code>
-          </pre>
-
           <h3 className="text-xl font-semibold text-slate-900 mb-3 mt-8">
             Nested Translations
           </h3>
           <p className="text-slate-600 mb-4">
-            Organize your translations in a nested structure for better
-            maintainability:
+            Organize your translations into nested objects for better structure
+            and maintainability:
           </p>
 
-          <pre className="bg-slate-900 text-amber-400 rounded-lg p-4 overflow-x-auto mb-6 text-sm">
-            <code>{`{
-  "pages": {
-    "home": {
-      "title": "Home Page",
-      "meta": {
-        "description": "Welcome to our homepage"
-      }
-    },
-    "about": {
-      "title": "About Us",
-      "team": {
-        "title": "Our Team",
-        "members": {
-          "ceo": "Chief Executive Officer",
-          "cto": "Chief Technology Officer"
-        }
-      }
-    }
-  },
-  "common": {
-    "buttons": {
-      "submit": "Submit",
-      "cancel": "Cancel",
-      "save": "Save"
-    },
-    "errors": {
-      "required": "This field is required",
-      "invalid": "Invalid input"
-    }
-  }
-}`}</code>
-          </pre>
-
-          <p className="text-slate-600 mb-4">
-            Access nested values with dot notation:
-          </p>
-
-          <pre className="bg-slate-900 text-amber-400 rounded-lg p-4 overflow-x-auto mb-6 text-sm">
-            <code>{`<h1>{dict.pages.about.team.title}</h1>
-<button>{dict.common.buttons.submit}</button>
-<span>{dict.common.errors.required}</span>`}</code>
-          </pre>
-
-          <h3 className="text-xl font-semibold text-slate-900 mb-3 mt-8">
-            Dynamic Values in Translations
-          </h3>
-          <p className="text-slate-600 mb-4">
-            Use template strings for dynamic content:
-          </p>
-
-          <pre className="bg-slate-900 text-amber-400 rounded-lg p-4 overflow-x-auto mb-6 text-sm">
-            <code>{`// Dictionary
-{
-  "greeting": "Hello, {{name}}!",
-  "itemsCount": "You have {{count}} items in your cart"
-}
-
-// Usage in component
-export function Greeting({ dict, userName }: Props) {
-  const greeting = dict.greeting.replace('{{name}}', userName);
-  
-  return <h1>{greeting}</h1>;
-}
-
-// Or create a helper function
-function t(key: string, values: Record<string, string>) {
-  return key.replace(/{{(\\w+)}}/g, (_, k) => values[k] || '');
-}
-
-<p>{t(dict.itemsCount, { count: '5' })}</p>`}</code>
-          </pre>
+          <CodeSnippet code={snippets.NESTED_TRANSLATIONS} className="mb-6" />
         </section>
 
         {/* Best Practices */}
@@ -536,14 +358,10 @@ function t(key: string, values: Record<string, string>) {
                 Structure your dictionaries by feature or page for better
                 maintainability:
               </p>
-              <pre className="bg-slate-900 text-amber-400 rounded-lg p-3 overflow-x-auto text-xs">
-                <code>{`{
-  "home": { ... },
-  "about": { ... },
-  "products": { ... },
-  "common": { ... }
-}`}</code>
-              </pre>
+              <CodeSnippet
+                code={snippets.ORGANIZE_BY_FEATURE}
+                className="mb-6"
+              />
             </div>
 
             <div className="bg-slate-50 border border-slate-200 rounded-lg p-6">
@@ -559,23 +377,19 @@ function t(key: string, values: Record<string, string>) {
                   <p className="text-sm text-red-600 font-semibold mb-2">
                     ❌ Bad
                   </p>
-                  <pre className="bg-slate-900 text-amber-400 rounded-lg p-3 text-xs">
-                    <code>{`{
-  "btn1": "Submit",
-  "txt1": "Hello"
-}`}</code>
-                  </pre>
+                  <CodeSnippet
+                    code={snippets.DESCRIPTIVE_BAD_KEYS}
+                    className="mb-6"
+                  />
                 </div>
                 <div>
                   <p className="text-sm text-green-600 font-semibold mb-2">
                     ✅ Good
                   </p>
-                  <pre className="bg-slate-900 text-amber-400 rounded-lg p-3 text-xs">
-                    <code>{`{
-  "submitButton": "Submit",
-  "welcomeMessage": "Hello"
-}`}</code>
-                  </pre>
+                  <CodeSnippet
+                    code={snippets.DESCRIPTIVE_GOOD_KEYS}
+                    className="mb-6"
+                  />
                 </div>
               </div>
             </div>
@@ -606,125 +420,6 @@ function t(key: string, values: Record<string, string>) {
                 multiple times - it's optimized!
               </p>
             </div>
-
-            <div className="bg-slate-50 border border-slate-200 rounded-lg p-6">
-              <h3 className="font-bold text-slate-900 mb-3 flex items-center gap-2">
-                <span className="text-xl">✏️</span>
-                <span>Validate Translations</span>
-              </h3>
-              <p className="text-slate-600 mb-3">
-                Create a script to ensure all languages have the same keys:
-              </p>
-              <pre className="bg-slate-900 text-amber-400 rounded-lg p-3 overflow-x-auto text-xs">
-                <code>{`// scripts/validate-translations.ts
-const en = require('../src/dictionaries/en.json');
-const fr = require('../src/dictionaries/fr.json');
-
-function getKeys(obj: any, prefix = ''): string[] {
-  return Object.keys(obj).flatMap(key => {
-    const path = prefix ? \`\${prefix}.\${key}\` : key;
-    return typeof obj[key] === 'object' 
-      ? getKeys(obj[key], path) 
-      : [path];
-  });
-}
-
-const enKeys = getKeys(en).sort();
-const frKeys = getKeys(fr).sort();
-
-const missing = enKeys.filter(k => !frKeys.includes(k));
-if (missing.length) {
-  console.error('Missing FR translations:', missing);
-  process.exit(1);
-}`}</code>
-              </pre>
-            </div>
-          </div>
-        </section>
-
-        {/* Migration Guide */}
-        <section id="migration" className="mb-16">
-          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
-            Migration from Other i18n Libraries
-          </h2>
-          <p className="text-slate-600 mb-6">
-            Coming from react-i18next, react-intl, or next-i18next? Here's how
-            Harpy.js i18n compares:
-          </p>
-
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse border border-slate-300 text-sm">
-              <thead className="bg-slate-100">
-                <tr>
-                  <th className="border border-slate-300 px-4 py-2 text-left">
-                    Feature
-                  </th>
-                  <th className="border border-slate-300 px-4 py-2 text-left">
-                    Other Libraries
-                  </th>
-                  <th className="border border-slate-300 px-4 py-2 text-left">
-                    Harpy.js
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="border border-slate-300 px-4 py-2 font-semibold">
-                    Setup
-                  </td>
-                  <td className="border border-slate-300 px-4 py-2">
-                    Requires provider, config files
-                  </td>
-                  <td className="border border-slate-300 px-4 py-2 text-green-700">
-                    Zero config, built-in
-                  </td>
-                </tr>
-                <tr className="bg-slate-50">
-                  <td className="border border-slate-300 px-4 py-2 font-semibold">
-                    Bundle Size
-                  </td>
-                  <td className="border border-slate-300 px-4 py-2">
-                    10-50KB extra
-                  </td>
-                  <td className="border border-slate-300 px-4 py-2 text-green-700">
-                    0KB (built-in)
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border border-slate-300 px-4 py-2 font-semibold">
-                    Type Safety
-                  </td>
-                  <td className="border border-slate-300 px-4 py-2">
-                    Manual types or none
-                  </td>
-                  <td className="border border-slate-300 px-4 py-2 text-green-700">
-                    Automatic from dictionaries
-                  </td>
-                </tr>
-                <tr className="bg-slate-50">
-                  <td className="border border-slate-300 px-4 py-2 font-semibold">
-                    SSR Support
-                  </td>
-                  <td className="border border-slate-300 px-4 py-2">
-                    Complex setup required
-                  </td>
-                  <td className="border border-slate-300 px-4 py-2 text-green-700">
-                    Native SSR support
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border border-slate-300 px-4 py-2 font-semibold">
-                    Performance
-                  </td>
-                  <td className="border border-slate-300 px-4 py-2">
-                    Runtime overhead
-                  </td>
-                  <td className="border border-slate-300 px-4 py-2 text-green-700">
-                    Cached & optimized
-                  </td>
-                </tr>
-              </tbody>
-            </table>
           </div>
         </section>
 
