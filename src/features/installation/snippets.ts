@@ -84,19 +84,12 @@ async function bootstrap() {
     new FastifyAdapter(),
   );
 
-  // Initialize Harpy.js JSX engine with your layout
-  await setupHarpyApp(app, { 
-    layout: DefaultLayout,
-    distDir: 'dist' // directory for built hydration assets
-  });
-
-  // Register static file serving (optional, for public assets)
-  const fastify = app.getHttpAdapter().getInstance();
-  await fastify.register(fastifyStatic, {
-    root: path.join(process.cwd(), 'public'),
-    prefix: '/public/',
-    decorateReply: false,
-  });
+  // Centralized Harpy setup: JSX engine, cookies, and static handlers
+    await setupHarpyApp(app, {
+      layout: DefaultLayout, // Root layout component, this the layout that wraps all pages unless you override it per-page in the controller
+      distDir: 'dist', // In case you changed the output dir in tsconfig.json, consider updating this
+      publicDir: 'public', // Directory for static assets like images, fonts, etc.
+    });
 
   await app.listen({
     port: process.env.PORT || 3000,
@@ -194,9 +187,6 @@ export const PROJECT_STRUCTURE = `my-fullstack-app/
 │  ├─ i18n/                # Internationalization
 │  │  ├─ get-dictionary.ts
 │  │  └─ translations/
-│  ├─ shared/              # Shared utilities, decorators, services
-│  │  ├─ navigation.service.ts
-│  │  └─ app.module.ts     # Root module importing all features
 │  ├─ main.ts              # Server bootstrap (NestJS + Fastify)
 │  └─ app.module.ts        # Root NestJS module
 ├─ public/                 # Public static files (images, favicon, etc.)
