@@ -4,12 +4,23 @@ import { Check, Copy } from 'lucide-react';
 
 interface CodeSnippetProps {
   code: string;
+  language?:
+    | 'typescript'
+    | 'javascript'
+    | 'jsx'
+    | 'tsx'
+    | 'bash'
+    | 'shell'
+    | 'json'
+    | 'html'
+    | 'css';
   className?: string;
   showLineNumbers?: boolean;
 }
 
 export default function CodeSnippet({
   code,
+  language = 'typescript',
   className = '',
   showLineNumbers = false,
 }: CodeSnippetProps) {
@@ -29,6 +40,19 @@ export default function CodeSnippet({
   // remove backslashes that were added to escape `<script>` in template strings
   const normalized = code.replace(/\\+(?=(?:\/)?script)/gi, '');
 
+  // Language labels for display
+  const languageLabels: Record<string, string> = {
+    typescript: 'TypeScript',
+    javascript: 'JavaScript',
+    jsx: 'JSX',
+    tsx: 'TSX',
+    bash: 'Bash',
+    shell: 'Shell',
+    json: 'JSON',
+    html: 'HTML',
+    css: 'CSS',
+  };
+
   return (
     <div
       className={`w-full max-w-4xl bg-white border border-slate-200 rounded-3xl p-4 text-slate-800 shadow-sm ${className}`}
@@ -36,7 +60,10 @@ export default function CodeSnippet({
       aria-label="Code snippet"
     >
       {/* Header */}
-      <div className="flex justify-end items-center mb-2">
+      <div className="flex justify-between items-center mb-2">
+        <span className="text-xs font-semibold text-slate-500 uppercase tracking-wide">
+          {languageLabels[language] || language}
+        </span>
         <button
           onClick={() => void handleCopy()}
           className="p-2 rounded bg-slate-50 hover:bg-slate-100 transition cursor-pointer text-slate-700"
@@ -54,7 +81,7 @@ export default function CodeSnippet({
       {/* Code block */}
       <pre className="overflow-x-auto p-3 text-sm font-mono bg-slate-50 rounded-md">
         <code className="block text-slate-800">
-          {highlight(normalized, showLineNumbers)}
+          {highlight(normalized, language, showLineNumbers)}
         </code>
       </pre>
     </div>
@@ -62,7 +89,11 @@ export default function CodeSnippet({
 }
 
 /* ---------------- Syntax Highlighting ---------------- */
-function highlight(code: string, showLineNumbers: boolean = false) {
+function highlight(
+  code: string,
+  language: string,
+  showLineNumbers: boolean = false,
+) {
   const jsKeywords = {
     blue: [
       'import',
@@ -76,12 +107,23 @@ function highlight(code: string, showLineNumbers: boolean = false) {
       'default',
       'export',
       'interface',
+      'type',
       'if',
       'else',
       'try',
       'catch',
+      'throw',
+      'for',
+      'while',
+      'do',
+      'switch',
+      'case',
+      'break',
+      'continue',
+      'typeof',
+      'instanceof',
     ],
-    purple: ['function', 'class', 'extends', 'new'],
+    purple: ['function', 'class', 'extends', 'new', 'implements', 'enum'],
     yellow: ['AppModule', 'NestFactory', 'FastifyAdapter', 'MainLayout'],
     green: ['true', 'false', 'null', 'undefined'],
   };
@@ -119,7 +161,31 @@ function highlight(code: string, showLineNumbers: boolean = false) {
     'type',
     'rel',
     'title',
+    'placeholder',
+    'value',
+    'name',
   ];
+
+  const cssProperties = [
+    'color',
+    'background',
+    'margin',
+    'padding',
+    'display',
+    'flex',
+    'grid',
+    'position',
+    'width',
+    'height',
+  ];
+
+  const isShellLike = language === 'bash' || language === 'shell';
+  const isJsLike = ['typescript', 'javascript', 'jsx', 'tsx'].includes(
+    language,
+  );
+  const isHtml = language === 'html';
+  const isCss = language === 'css';
+  const isJson = language === 'json';
 
   // React safely escapes text nodes, so avoid pre-escaping HTML here
   // (pre-escaping caused double-escaped entities like `&lt;div&gt;` appearing)
@@ -129,8 +195,8 @@ function highlight(code: string, showLineNumbers: boolean = false) {
   let inMultilineComment = false;
 
   lines.forEach((line, i) => {
-    // Check for multiline comment continuation
-    if (inMultilineComment) {
+    // Check for multiline comment continuation (for JS-like languages)
+    if (inMultilineComment && isJsLike) {
       const endCommentIndex = line.indexOf('*/');
       if (endCommentIndex !== -1) {
         // End of multiline comment found
@@ -158,6 +224,12 @@ function highlight(code: string, showLineNumbers: boolean = false) {
                 jsKeywords,
                 shellCommands,
                 htmlAttrs,
+                cssProperties,
+                isShellLike,
+                isJsLike,
+                isHtml,
+                isCss,
+                isJson,
               )}
           </span>,
         );
@@ -183,8 +255,8 @@ function highlight(code: string, showLineNumbers: boolean = false) {
       }
     }
 
-    // Check for single-line comment
-    const singleCommentIndex = line.indexOf('//');
+    // Check for single-line comment (JS-like languages)
+    const singleCommentIndex = isJsLike ? line.indexOf('//') : -1;
     if (singleCommentIndex !== -1) {
       const beforeComment = line.substring(0, singleCommentIndex);
       const comment = line.substring(singleCommentIndex);
@@ -208,6 +280,12 @@ function highlight(code: string, showLineNumbers: boolean = false) {
               jsKeywords,
               shellCommands,
               htmlAttrs,
+              cssProperties,
+              isShellLike,
+              isJsLike,
+              isHtml,
+              isCss,
+              isJson,
             )}
           <span className="text-green-600">{comment}</span>
         </span>,
@@ -215,8 +293,8 @@ function highlight(code: string, showLineNumbers: boolean = false) {
       return;
     }
 
-    // Check for multiline comment start
-    const multiCommentIndex = line.indexOf('/*');
+    // Check for multiline comment start (JS-like languages)
+    const multiCommentIndex = isJsLike ? line.indexOf('/*') : -1;
     if (multiCommentIndex !== -1) {
       const endCommentIndex = line.indexOf('*/', multiCommentIndex + 2);
       const beforeComment = line.substring(0, multiCommentIndex);
@@ -245,6 +323,12 @@ function highlight(code: string, showLineNumbers: boolean = false) {
                 jsKeywords,
                 shellCommands,
                 htmlAttrs,
+                cssProperties,
+                isShellLike,
+                isJsLike,
+                isHtml,
+                isCss,
+                isJson,
               )}
             <span className="text-green-600">{comment}</span>
             {afterComment &&
@@ -254,6 +338,12 @@ function highlight(code: string, showLineNumbers: boolean = false) {
                 jsKeywords,
                 shellCommands,
                 htmlAttrs,
+                cssProperties,
+                isShellLike,
+                isJsLike,
+                isHtml,
+                isCss,
+                isJson,
               )}
           </span>,
         );
@@ -282,12 +372,38 @@ function highlight(code: string, showLineNumbers: boolean = false) {
                 jsKeywords,
                 shellCommands,
                 htmlAttrs,
+                cssProperties,
+                isShellLike,
+                isJsLike,
+                isHtml,
+                isCss,
+                isJson,
               )}
             <span className="text-green-600">{comment}</span>
           </span>,
         );
         return;
       }
+    }
+
+    // Check for shell comments
+    if (isShellLike && line.trim().startsWith('#')) {
+      const lineNumber = showLineNumbers ? (
+        <span
+          key={`ln-${i}`}
+          className="inline-block w-8 text-right pr-3 text-slate-400 select-none"
+        >
+          {i + 1}
+        </span>
+      ) : null;
+
+      nodes.push(
+        <span key={`line-${i}`} className="block">
+          {lineNumber}
+          <span className="text-green-600">{line}</span>
+        </span>,
+      );
+      return;
     }
 
     // Regular line without comments
@@ -297,6 +413,12 @@ function highlight(code: string, showLineNumbers: boolean = false) {
       jsKeywords,
       shellCommands,
       htmlAttrs,
+      cssProperties,
+      isShellLike,
+      isJsLike,
+      isHtml,
+      isCss,
+      isJson,
     );
 
     const lineNumber = showLineNumbers ? (
@@ -319,12 +441,25 @@ function highlight(code: string, showLineNumbers: boolean = false) {
   return nodes;
 }
 
+interface KeywordMap {
+  blue: string[];
+  purple: string[];
+  yellow: string[];
+  green: string[];
+}
+
 function highlightLineChunks(
   line: string,
   lineIndex: number,
-  jsKeywords: any,
+  jsKeywords: KeywordMap,
   shellCommands: string[],
   htmlAttrs: string[],
+  cssProperties: string[],
+  isShellLike: boolean,
+  isJsLike: boolean,
+  isHtml: boolean,
+  isCss: boolean,
+  isJson: boolean,
 ) {
   return line.split(/(\s+)/).map((chunk, j) => {
     const trimmed = chunk.trim();
@@ -338,16 +473,23 @@ function highlightLineChunks(
       );
     }
 
-    // Shell commands
-    if (shellCommands.includes(trimmed)) {
+    // Shell commands (for shell-like languages)
+    if (isShellLike && shellCommands.includes(trimmed)) {
       colorClass = 'text-violet-600';
     }
     // Shell flags (like --save, -g, etc.)
-    else if (/^--?[a-zA-Z][\w-]*$/.test(trimmed)) {
+    else if (isShellLike && /^--?[a-zA-Z][\w-]*$/.test(trimmed)) {
       colorClass = 'text-cyan-600';
     }
+    // CSS properties
+    else if (isCss && cssProperties.some((prop) => trimmed.startsWith(prop))) {
+      colorClass = 'text-sky-600';
+    }
     // JSON keys with quotes
-    else if (/^"[^"]+":$/.test(trimmed) || /^'[^']+':$/.test(trimmed)) {
+    else if (
+      (isJson || isJsLike) &&
+      (/^"[^"]+":$/.test(trimmed) || /^'[^']+':$/.test(trimmed))
+    ) {
       colorClass = 'text-sky-600';
     }
     // Numbers (for JSON and general)
@@ -355,17 +497,17 @@ function highlightLineChunks(
       colorClass = 'text-amber-600';
     }
     // JS/JSON boolean and null values
-    else if (jsKeywords.green.includes(trimmed)) {
+    else if (isJsLike && jsKeywords.green.includes(trimmed)) {
       colorClass = 'text-emerald-600';
-    } else if (jsKeywords.purple.includes(trimmed)) {
+    } else if (isJsLike && jsKeywords.purple.includes(trimmed)) {
       colorClass = 'text-violet-600';
-    } else if (jsKeywords.yellow.includes(trimmed)) {
+    } else if (isJsLike && jsKeywords.yellow.includes(trimmed)) {
       colorClass = 'text-amber-600';
-    } else if (jsKeywords.blue.includes(trimmed)) {
+    } else if (isJsLike && jsKeywords.blue.includes(trimmed)) {
       colorClass = 'text-sky-600';
     }
     // HTML/JSX tags
-    else if (/^<([a-zA-Z][\w-]*)/.test(trimmed)) {
+    else if ((isHtml || isJsLike) && /^<([a-zA-Z][\w-]*)/.test(trimmed)) {
       const tagMatch = trimmed.match(/^<([a-zA-Z][\w-]*)/);
       if (tagMatch) {
         const tagName = tagMatch[1];
@@ -377,7 +519,10 @@ function highlightLineChunks(
       }
     }
     // HTML attributes
-    else if (htmlAttrs.some((attr) => trimmed.startsWith(attr + '='))) {
+    else if (
+      (isHtml || isJsLike) &&
+      htmlAttrs.some((attr) => trimmed.startsWith(attr + '='))
+    ) {
       colorClass = 'text-cyan-600';
     }
     // String literals
