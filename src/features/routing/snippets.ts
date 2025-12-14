@@ -122,16 +122,26 @@ export class EaglesController {
 
   @Get('eagles')
   @JsxRender(EaglesPage, { layout: DashboardLayout })
-  async eagles(@Req() req: any) {
-    const currentPath = req.url || '/docs/eagles';
+  async eagles(
+    @Req() req: FastifyRequest,
+    @CurrentLocale() locale: string,
+  ) {
+    const currentPath = (req.originalUrl || req.url);
+
+    // Load the dictionary for the current locale
+    const dict = await getDictionary(locale);
 
     // Returns sections where items have '.active === true' for the
     // item that matches 'currentPath'.
     const sections = this.navigationService.getSectionsForRoute(currentPath);
     const activeItemId = this.navigationService.getActiveItemId(currentPath);
 
-    const dict = await getDictionary('en');
-    return { sections, dict, locale: 'en', activeItemId };
+    return { 
+      sections,
+      dict,
+      locale,
+      activeItemId,
+    };
   }
 }`;
 
