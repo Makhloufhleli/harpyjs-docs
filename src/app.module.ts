@@ -9,6 +9,7 @@ import { InternationalizationModule } from './features/internationalization/inte
 import { SeoDocsModule } from './features/seo-docs/seo-docs.module';
 import { ExamplesModule } from './features/examples/examples.module';
 import { LayoutsDocsModule } from './features/layouts-docs/layouts-docs.module';
+import { ErrorPagesDocsModule } from './features/error-pages-docs/error-pages-docs.module';
 import { i18nConfig } from './i18n/i18n.config';
 import { InstallationModule } from './features/installation/installation.module';
 import { RouterModule, SeoModule } from '@harpy-js/core';
@@ -35,6 +36,7 @@ import { SeoService } from './seo.service';
     InternationalizationModule,
     ExamplesModule,
     LayoutsDocsModule,
+    ErrorPagesDocsModule,
 
     SeoModule.forRootWithService(SeoService, {
       baseUrl: 'https://harpyjs.org',

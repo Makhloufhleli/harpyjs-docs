@@ -7,6 +7,8 @@ import type { NestFastifyApplication } from '@nestjs/platform-fastify';
 
 import DefaultLayout from './layouts/layout';
 import { inject } from '@vercel/analytics';
+import Custom404Page from './error-pages/404';
+import Custom500Page from './error-pages/500';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -19,6 +21,10 @@ async function bootstrap() {
     layout: DefaultLayout,
     distDir: 'dist',
     publicDir: 'public',
+    errorPages: {
+      404: Custom404Page,
+      '500': Custom500Page,
+    },
   });
 
   inject();
