@@ -15,25 +15,26 @@ export class SeoDocsController {
     layout: DashboardLayout,
     meta: {
       title:
-        'SEO & Discoverability - robots.txt, sitemap.xml | Harpy.js Framework',
+        'HarpyJS | Harpy.js - High-Performance Full-Stack Framework | NestJS + React SSR + Fastify',
       description:
-        'Complete SEO guide for Harpy.js. Learn how to generate robots.txt and sitemap.xml files automatically, customize crawling rules, implement dynamic sitemaps from databases, and optimize your Node.js application for search engines with built-in SEO features.',
+        'HarpyJS (Harpy.js) - Ultra-fast full-stack framework built on NestJS, React SSR, and Fastify. Build high-performance, SEO-optimized web applications with React.js server-side rendering, automatic client hydration, and sub-7ms page loads. The modern fullstack TypeScript framework for Node.js with enterprise-grade features. Perfect for building scalable fullstack applications with React frontend and NestJS backend.',
       keywords:
-        'SEO, search engine optimization, robots.txt, sitemap.xml, NestJS SEO, Node.js SEO, web crawlers, search engine indexing, dynamic sitemaps, SEO best practices, discoverability, Google indexing',
-      canonical: 'https://www.harpyjs.org/docs/seo',
+        'HarpyJS, Harpy.js, Harpy JS, harpyjs, harpy js, harpy.js, NestJS, NestJS framework, React, ReactJS, React.js, React SSR, server-side rendering, SSR framework, fullstack, full-stack, full stack framework, Node.js, NodeJS, Node.js framework, Fastify, performance, high-performance, fast, blazing fast, web performance, TypeScript, TypeScript framework, web development, Next.js alternative, Nextjs alternative, SEO, SEO optimized, React hydration, automatic hydration, client-side hydration, scalable applications, enterprise framework, modern framework, backend framework, frontend framework, web framework, JavaScript framework, fullstack development, full-stack development, React framework, NestJS React, i18n, internationalization, dynamic layouts, web app framework, progressive web app, PWA',
+      canonical: 'https://www.harpyjs.org/',
       openGraph: {
-        title: 'SEO & Discoverability - Harpy.js Built-in SEO Features',
+        title:
+          'HarpyJS - High-Performance Full-Stack Framework with NestJS + React SSR + Fastify',
         description:
-          'Master SEO in Harpy.js with automatic robots.txt and sitemap.xml generation. Built-in controllers, dynamic sitemap support, and extensible service architecture for optimal search engine discoverability.',
+          'Build blazing-fast fullstack applications with HarpyJS. Combines NestJS backend, React server-side rendering, and Fastify for ultra-fast performance. Sub-7ms render times, automatic hydration, and SEO optimization. The modern fullstack TypeScript framework for Node.js.',
         type: 'website',
-        url: 'https://www.harpyjs.org/docs/seo',
+        url: 'https://www.harpyjs.org/',
         image: 'https://harpyjs.org/favicon.png',
       },
       twitter: {
         card: 'summary',
-        title: 'SEO & Discoverability - Harpy.js Framework',
+        title: 'HarpyJS - High-Performance NestJS + React SSR Framework',
         description:
-          'Built-in SEO features: automatic robots.txt & sitemap.xml generation, dynamic sitemaps, and extensible service architecture for search engine optimization.',
+          'Build blazing-fast, SEO-optimized fullstack apps with HarpyJS. NestJS + React SSR + Fastify with automatic hydration and sub-7ms render times. Modern TypeScript framework for high-performance Node.js applications.',
         image: 'https://harpyjs.org/twitter-card.jpg',
       },
     },
