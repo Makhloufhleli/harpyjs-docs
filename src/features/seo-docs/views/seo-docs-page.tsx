@@ -449,6 +449,390 @@ export default function SeoDocsPage() {
           </div>
         </section>
 
+        {/* Canonical Domain Redirects */}
+        <section id="canonical-redirects" className="mb-10">
+          <h2 className="text-3xl font-bold text-slate-900 mb-4">
+            Canonical Domain Redirects
+          </h2>
+
+          <div className="bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-xl p-6 mb-6">
+            <div className="flex items-start gap-4">
+              <svg
+                className="w-8 h-8 flex-shrink-0 mt-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                />
+              </svg>
+              <div>
+                <h3 className="text-xl font-bold mb-2">
+                  Fix SEO Issues with Just 4 Lines of Code
+                </h3>
+                <p className="text-green-50">
+                  One of the most common SEO problems is having multiple URLs
+                  pointing to the same content—like{' '}
+                  <code className="bg-green-700/50 px-2 py-0.5 rounded">
+                    http://
+                  </code>
+                  ,{' '}
+                  <code className="bg-green-700/50 px-2 py-0.5 rounded">
+                    https://
+                  </code>
+                  , and{' '}
+                  <code className="bg-green-700/50 px-2 py-0.5 rounded">
+                    www
+                  </code>{' '}
+                  variants. This confuses search engines and dilutes your
+                  rankings. Harpy.js solves this automatically with permanent
+                  redirects.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <h3 className="text-xl font-semibold text-slate-900 mb-3">
+            The Problem: Duplicate Content Penalties
+          </h3>
+          <p className="text-slate-600 mb-4">
+            Search engines like Google penalize websites that serve the same
+            content from multiple URLs. Without proper redirects, your site
+            could be accessible via:
+          </p>
+
+          <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded mb-6">
+            <ul className="space-y-2 text-red-900">
+              <li className="flex items-center gap-2">
+                <span className="text-red-600">❌</span>
+                <code className="bg-red-100 px-2 py-0.5 rounded">
+                  http://example.com
+                </code>
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-red-600">❌</span>
+                <code className="bg-red-100 px-2 py-0.5 rounded">
+                  https://example.com
+                </code>
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-red-600">❌</span>
+                <code className="bg-red-100 px-2 py-0.5 rounded">
+                  http://www.example.com
+                </code>
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-red-600">❌</span>
+                <code className="bg-red-100 px-2 py-0.5 rounded">
+                  https://www.example.com
+                </code>
+              </li>
+            </ul>
+            <p className="text-red-800 mt-3 text-sm">
+              <strong>Result:</strong> Google Search Console will flag these as
+              "Page with redirect" errors, your link equity gets split across
+              multiple URLs, and your rankings suffer.
+            </p>
+          </div>
+
+          <h3 className="text-xl font-semibold text-slate-900 mb-3">
+            The Solution: One Canonical URL
+          </h3>
+          <p className="text-slate-600 mb-4">
+            Harpy.js automatically issues{' '}
+            <strong>301 Permanent Redirects</strong> to consolidate all traffic
+            to your preferred canonical domain:
+          </p>
+
+          <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded mb-6">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-green-600 text-xl">✅</span>
+              <code className="bg-green-100 px-2 py-0.5 rounded text-green-900 font-semibold">
+                https://example.com
+              </code>
+              <span className="text-green-700 text-sm">
+                (Your canonical URL)
+              </span>
+            </div>
+            <p className="text-green-800 text-sm">
+              All other variants automatically redirect here with proper caching
+              headers.
+            </p>
+          </div>
+
+          <h3 className="text-xl font-semibold text-slate-900 mb-3">
+            Implementation: Simple & Powerful
+          </h3>
+          <p className="text-slate-600 mb-4">
+            Add these four options to your{' '}
+            <code className="bg-slate-100 px-2 py-0.5 rounded">
+              setupHarpyApp()
+            </code>{' '}
+            call in your{' '}
+            <code className="bg-slate-100 px-2 py-0.5 rounded">main.ts</code>{' '}
+            file:
+          </p>
+
+          <CodeSnippet
+            code={snippets.CANONICAL_REDIRECTS}
+            language="typescript"
+            showLineNumbers
+            className="mb-6"
+          />
+
+          <div className="bg-blue-50 border-l-4 border-blue-500 p-5 rounded mb-6">
+            <h4 className="font-semibold text-blue-900 mb-3">
+              Configuration Options:
+            </h4>
+            <CodeSnippet
+              code={snippets.CANONICAL_REDIRECT_OPTIONS}
+              language="typescript"
+              className="mb-4"
+            />
+            <ul className="space-y-2 text-blue-900 text-sm">
+              <li>
+                <strong>enforceRedirects:</strong> Master switch to
+                enable/disable all redirect logic
+              </li>
+              <li>
+                <strong>mainDomain:</strong> Your canonical domain without
+                protocol or www (e.g., 'example.com', 'harpyjs.org')
+              </li>
+              <li>
+                <strong>enforceHttps:</strong> Redirects all HTTP requests to
+                HTTPS
+              </li>
+              <li>
+                <strong>redirectWww:</strong> Redirects www to non-www (or set
+                to false for opposite)
+              </li>
+            </ul>
+          </div>
+
+          <h3 className="text-xl font-semibold text-slate-900 mb-3">
+            How It Works Behind the Scenes
+          </h3>
+
+          <div className="grid md:grid-cols-2 gap-4 mb-6">
+            <div className="bg-white border-2 border-slate-200 rounded-lg p-5">
+              <div className="flex items-center gap-2 mb-3">
+                <svg
+                  className="w-6 h-6 text-blue-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  />
+                </svg>
+                <h4 className="font-semibold text-slate-900">
+                  Fastify Hook Integration
+                </h4>
+              </div>
+              <p className="text-slate-600 text-sm">
+                Uses a Fastify{' '}
+                <code className="bg-slate-100 px-1.5 py-0.5 rounded text-xs">
+                  onRequest
+                </code>{' '}
+                hook that runs early in the request lifecycle—before any route
+                handlers.
+              </p>
+            </div>
+
+            <div className="bg-white border-2 border-slate-200 rounded-lg p-5">
+              <div className="flex items-center gap-2 mb-3">
+                <svg
+                  className="w-6 h-6 text-purple-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                  />
+                </svg>
+                <h4 className="font-semibold text-slate-900">Proxy-Aware</h4>
+              </div>
+              <p className="text-slate-600 text-sm">
+                Automatically detects{' '}
+                <code className="bg-slate-100 px-1.5 py-0.5 rounded text-xs">
+                  x-forwarded-proto
+                </code>{' '}
+                headers from proxies like Vercel, Cloudflare, and Nginx.
+              </p>
+            </div>
+
+            <div className="bg-white border-2 border-slate-200 rounded-lg p-5">
+              <div className="flex items-center gap-2 mb-3">
+                <svg
+                  className="w-6 h-6 text-green-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+                <h4 className="font-semibold text-slate-900">
+                  301 Permanent Redirects
+                </h4>
+              </div>
+              <p className="text-slate-600 text-sm">
+                Uses{' '}
+                <code className="bg-slate-100 px-1.5 py-0.5 rounded text-xs">
+                  301
+                </code>{' '}
+                status codes (not 302) with 1-year cache headers, telling search
+                engines this redirect is permanent.
+              </p>
+            </div>
+
+            <div className="bg-white border-2 border-slate-200 rounded-lg p-5">
+              <div className="flex items-center gap-2 mb-3">
+                <svg
+                  className="w-6 h-6 text-orange-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
+                </svg>
+                <h4 className="font-semibold text-slate-900">
+                  Localhost Exemption
+                </h4>
+              </div>
+              <p className="text-slate-600 text-sm">
+                Automatically skips redirects for{' '}
+                <code className="bg-slate-100 px-1.5 py-0.5 rounded text-xs">
+                  localhost
+                </code>{' '}
+                and{' '}
+                <code className="bg-slate-100 px-1.5 py-0.5 rounded text-xs">
+                  127.0.0.1
+                </code>{' '}
+                so local development works without hassle.
+              </p>
+            </div>
+          </div>
+
+          <h3 className="text-xl font-semibold text-slate-900 mb-3">
+            Real-World Impact
+          </h3>
+
+          <div className="bg-gradient-to-br from-slate-50 to-slate-100 border-2 border-slate-300 rounded-xl p-6 mb-6">
+            <div className="flex items-start gap-4">
+              <div className="bg-green-500 p-2 rounded-lg">
+                <svg
+                  className="w-6 h-6 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                  />
+                </svg>
+              </div>
+              <div className="flex-1">
+                <h4 className="font-bold text-slate-900 text-lg mb-2">
+                  SEO Benefits:
+                </h4>
+                <ul className="space-y-2 text-slate-700">
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-1">✓</span>
+                    <span>
+                      <strong>Consolidated Link Equity:</strong> All backlinks
+                      point to one URL, maximizing ranking power
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-1">✓</span>
+                    <span>
+                      <strong>No Duplicate Content:</strong> Search engines
+                      index only your canonical URL
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-1">✓</span>
+                    <span>
+                      <strong>Clean Search Console:</strong> Eliminates "Page
+                      with redirect" warnings
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-1">✓</span>
+                    <span>
+                      <strong>Better Crawl Efficiency:</strong> Search bots
+                      don't waste time on redirects
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-1">✓</span>
+                    <span>
+                      <strong>HTTPS Security:</strong> Forces secure
+                      connections, boosting trust signals
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-amber-50 border-l-4 border-amber-500 p-5 rounded">
+            <div className="flex items-start gap-3">
+              <svg
+                className="w-6 h-6 text-amber-600 flex-shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <div>
+                <h4 className="font-semibold text-amber-900 mb-2">
+                  Why This Matters:
+                </h4>
+                <p className="text-amber-800">
+                  Most frameworks require complex server configuration,
+                  middleware chains, or third-party packages to handle canonical
+                  redirects. Harpy.js makes it <strong>framework-native</strong>
+                  —just four configuration options and you're done. This is
+                  exactly the kind of developer experience that prevents costly
+                  SEO mistakes before they happen.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Why It Matters */}
         <section id="why-it-matters" className="mb-10">
           <h2 className="text-3xl font-bold text-slate-900 mb-4">
