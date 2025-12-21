@@ -83,16 +83,16 @@ export default function DefaultLayout({
         <meta name="language" content="English" />
         <meta name="revisit-after" content="7 days" />
       </head>
-      <body className="bg-slate-50 overflow-x-hidden">
+      <body className="bg-white overflow-x-hidden">
         {/* Header */}
-        <header className="bg-linear-to-r from-slate-900 via-purple-950 to-slate-900 border-b border-purple-900 shadow-lg sticky top-0 z-50 backdrop-blur-sm">
-          <div className="container mx-auto max-w-6xl px-4">
+        <header className="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-50 backdrop-blur-sm bg-white/95">
+          <div className="container mx-auto max-w-7xl px-4">
             <div className="flex items-center justify-between h-16">
               <a href="/" className="flex items-center gap-2 group">
-                <Logo className="size-12" />
-                {/* <span className="text-lg md:text-xl font-bold bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
-                  Harpy
-                </span> */}
+                <Logo className="size-10" />
+                <span className="text-lg md:text-xl font-bold bg-gradient-to-r from-red-600 via-orange-600 to-amber-600 bg-clip-text text-transparent">
+                  Harpy.js
+                </span>
               </a>
               <nav className="flex items-center gap-2 md:gap-3">
                 <Link
@@ -130,34 +130,34 @@ export default function DefaultLayout({
           </div>
         </header>
 
-        <main id="body" className="min-h-screen">
+        <main id="body" className="min-h-screen bg-white relative z-10">
           {children}
         </main>
 
         {/* Footer */}
-        <footer className="bg-gradient-to-bl from-slate-900 via-purple-900 to-slate-900 text-white py-12 border-t border-slate-700">
+        <footer className="bg-white text-slate-900 py-12 border-t border-slate-200 relative z-10">
           <div className="container mx-auto max-w-6xl px-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
               <div>
                 <div className="flex items-center gap-2 mb-4">
                   <Logo className="size-12" />
-                  <span className="text-xl font-bold bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
+                  <span className="text-xl font-bold bg-gradient-to-r from-red-600 via-orange-600 to-amber-600 bg-clip-text text-transparent">
                     Harpy.js
                   </span>
                 </div>
-                <p className="text-slate-300">
+                <p className="text-slate-600">
                   A powerful NestJS + React framework with automatic hydration.
                 </p>
               </div>
               <div>
-                <h3 className="font-bold mb-4 text-white">Resources</h3>
-                <ul className="space-y-2 text-slate-300">
+                <h3 className="font-bold mb-4 text-slate-900">Resources</h3>
+                <ul className="space-y-2 text-slate-600">
                   <li>
                     <Link
                       href="https://harpyjs.org"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:text-amber-400 transition-colors"
+                      className="hover:text-red-600 transition-colors"
                     >
                       Documentation
                     </Link>
@@ -167,7 +167,7 @@ export default function DefaultLayout({
                       href="https://www.npmjs.com/package/@harpy-js/core"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:text-amber-400 transition-colors"
+                      className="hover:text-red-600 transition-colors"
                     >
                       NPM Core
                     </Link>
@@ -177,7 +177,7 @@ export default function DefaultLayout({
                       href="https://www.npmjs.com/package/@harpy-js/cli"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:text-amber-400 transition-colors"
+                      className="hover:text-red-600 transition-colors"
                     >
                       NPM CLI
                     </Link>
@@ -185,8 +185,8 @@ export default function DefaultLayout({
                 </ul>
               </div>
               <div>
-                <h3 className="font-bold mb-4 text-white">Built With</h3>
-                <ul className="space-y-2 text-slate-300">
+                <h3 className="font-bold mb-4 text-slate-900">Built With</h3>
+                <ul className="space-y-2 text-slate-600">
                   <li>NestJS 11</li>
                   <li>React 19</li>
                   <li>Fastify</li>
@@ -194,17 +194,17 @@ export default function DefaultLayout({
                 </ul>
               </div>
             </div>
-            <div className="border-t border-slate-700 pt-8 text-center">
-              <p className="text-slate-400 mb-2">
+            <div className="border-t border-slate-200 pt-8 text-center">
+              <p className="text-slate-600 mb-2">
                 Powered by{' '}
-                <span className="text-amber-500 font-semibold">Harpy.js</span> -
+                <span className="text-red-600 font-semibold">Harpy.js</span> -
                 Soar above the competition
               </p>
               <p className="text-slate-500">
                 Built with ❤️ by{' '}
                 <a
                   href="https://github.com/Makhloufhleli"
-                  className="text-amber-500 hover:text-amber-400 transition-colors"
+                  className="text-red-600 hover:text-red-700 transition-colors"
                 >
                   Makhlouf Helali
                 </a>
