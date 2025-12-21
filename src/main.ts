@@ -25,10 +25,6 @@ async function bootstrap() {
       404: Custom404Page,
       '500': Custom500Page,
     },
-    enforceRedirects: true,
-    mainDomain: 'harpyjs.org',
-    enforceHttps: true,
-    redirectWww: true,
   });
 
   inject();
