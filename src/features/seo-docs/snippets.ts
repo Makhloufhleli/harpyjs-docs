@@ -192,6 +192,33 @@ curl http://localhost:3000/robots.txt
 # Test sitemap.xml
 curl http://localhost:3000/sitemap.xml`;
 
+export const CANONICAL_REDIRECTS = `import { NestFactory } from '@nestjs/core';
+import { FastifyAdapter } from '@nestjs/platform-fastify';
+import { setupHarpyApp } from '@harpy-js/core';
+
+async function bootstrap() {
+  const adapter = new FastifyAdapter();
+  const app = await NestFactory.create(AppModule, adapter);
+
+  await setupHarpyApp(app, {
+    enforceRedirects: true,           // Enable canonical redirects
+    mainDomain: 'example.com',        // Your canonical domain
+    enforceHttps: true,               // Redirect HTTP → HTTPS
+    redirectWww: true,                // Redirect www → non-www
+  });
+
+  await app.listen(process.env.PORT || 3000, '0.0.0.0');
+}
+bootstrap();`;
+
+export const CANONICAL_REDIRECT_OPTIONS = `interface HarpyAppOptions {
+  enforceRedirects?: boolean;  // Enable/disable all redirects
+  mainDomain?: string;         // Your canonical domain (e.g., 'example.com')
+  enforceHttps?: boolean;      // Force HTTPS protocol
+  redirectWww?: boolean;       // Redirect www to non-www (or vice versa)
+  // ... other options
+}`;
+
 export const SITEMAP_TYPES = `interface SitemapUrl {
   url: string;
   lastModified?: Date | string;
