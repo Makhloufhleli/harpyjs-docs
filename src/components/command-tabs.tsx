@@ -10,19 +10,22 @@ interface CommandTabsProps {
 }
 
 export default function CommandTabs({ commands }: CommandTabsProps) {
-  // Default commands if none provided
-  const defaultCommands: CommandMap = {};
-
-  const data: CommandMap = commands || defaultCommands;
+  // Provide a default command if none are passed
+  const defaultCommands: CommandMap = {
+    Terminal: 'echo "No command provided"',
+  };
+  const data: CommandMap =
+    commands && Object.keys(commands).length > 0 ? commands : defaultCommands;
   const tabs = Object.keys(data);
-
   const [active, setActive] = useState<string>(tabs[0]);
   const [copied, setCopied] = useState<boolean>(false);
 
   const handleCopy = async () => {
-    await navigator.clipboard.writeText(data[active]);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
+    if (data[active]) {
+      await navigator.clipboard.writeText(data[active]);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    }
   };
 
   return (
@@ -66,7 +69,7 @@ export default function CommandTabs({ commands }: CommandTabsProps) {
 
       {/* COMMAND OUTPUT */}
       <pre className="p-4 text-sm font-mono text-neutral-200 overflow-x-auto whitespace-pre-wrap">
-        {highlight(data[active])}
+        {highlight(data[active] || '')}
       </pre>
     </div>
   );
@@ -75,13 +78,16 @@ export default function CommandTabs({ commands }: CommandTabsProps) {
 /* ---------------- Syntax Highlighting ---------------- */
 
 function highlight(text: string) {
+  if (!text) return null;
   // remove indentation to avoid the "0 1 2 ..." issue
-  const clean = text.replace(/^\s+/gm, '');
+  const clean = text.replace(/^[\s]+/gm, '');
 
-  return clean.split('\n').map((line) => (
-    <div>
-      {line.split(' ').map((word) => (
-        <span className={color(word)}>{word + ' '}</span>
+  return clean.split('\n').map((line, idx) => (
+    <div key={idx}>
+      {line.split(' ').map((word, widx) => (
+        <span key={widx} className={color(word)}>
+          {word + ' '}
+        </span>
       ))}
     </div>
   ));

@@ -22,11 +22,11 @@ export default function HeroPage() {
       {/* Subtle gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-transparent to-purple-50/30" />
 
-      {/* Simple background for mobile */}
-      <div className="absolute inset-y-0 left-0 w-full lg:hidden bg-gradient-to-r from-slate-100/80 via-slate-50/50 to-transparent" />
+      {/* Simple background for mobile and tablets (including iPad) - up to 1280px */}
+      <div className="absolute inset-y-0 left-0 w-full xl:hidden bg-gradient-to-r from-slate-100/80 via-slate-50/50 to-transparent" />
 
-      {/* Eagle Background Image - Desktop only, fixed position */}
-      <div className="hidden lg:block fixed inset-y-0 left-0 w-2/5 pointer-events-none z-0">
+      {/* Eagle Background Image - Large Desktop only (1280px+) */}
+      <div className="hidden xl:block fixed inset-y-0 left-0 w-2/5 pointer-events-none z-0">
         <img
           src="/images.webp"
           alt="Harpy Eagle"
@@ -41,35 +41,38 @@ export default function HeroPage() {
       </div>
 
       {/* Hero Section */}
-      <div className="relative z-10 container mx-auto max-w-7xl px-4 py-16 lg:py-24">
+      <div className="relative z-10 container mx-auto max-w-7xl px-4 sm:px-6 py-16 xl:py-24">
         <div className="flex items-center justify-end min-h-[500px]">
           {/* Content */}
-          <div className="w-full lg:w-1/2 text-center lg:text-left">
+          <div className="w-full xl:w-1/2 text-center xl:text-left">
             {/* Title */}
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
+            <h1 className="text-5xl sm:text-6xl xl:text-7xl font-extrabold mb-6 leading-tight">
               <span className="bg-gradient-to-r from-red-600 via-orange-600 to-amber-600 bg-clip-text text-transparent">
                 Harpy.js
               </span>
             </h1>
 
             {/* Subtitle */}
-            <p className="text-xl sm:text-2xl lg:text-3xl text-slate-700 mb-4 font-light leading-relaxed">
+            <p className="text-xl sm:text-2xl xl:text-3xl text-slate-700 mb-4 font-light leading-relaxed">
               A progressive{' '}
-              <span className="font-semibold text-slate-900">NestJS</span>{' '}
+              <span className="font-semibold text-slate-900">Node.js</span>{' '}
               framework for building efficient and scalable server-side
               applications with{' '}
-              <span className="font-semibold text-slate-900">React SSR</span>.
+              <span className="font-semibold text-slate-900">
+                NestJs & React SSR
+              </span>
+              .
             </p>
 
             {/* Description */}
-            <p className="text-base sm:text-lg text-slate-600 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            <p className="text-base sm:text-lg text-slate-600 mb-8 leading-relaxed max-w-2xl mx-auto xl:mx-0">
               Harpy combines the power of NestJS with React server-side
               rendering, delivering lightning-fast performance with 1-7ms render
               times and automatic client hydration.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center xl:justify-start mb-8">
               <a
                 href="/docs"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105 text-lg"
@@ -107,7 +110,7 @@ export default function HeroPage() {
             </div>
 
             {/* Version Badges */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-3">
+            <div className="flex flex-wrap justify-center xl:justify-start gap-3">
               <img
                 src="https://img.shields.io/npm/v/@harpy-js/core?label=core&style=flat-square&color=e11d48"
                 alt="Core Version"
@@ -131,7 +134,7 @@ export default function HeroPage() {
       {/* Features Grid Section */}
       <div className="relative z-10 bg-white py-16 px-4">
         <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
             {[
               {
                 icon: 'fastify-logo.png',
@@ -162,7 +165,7 @@ export default function HeroPage() {
                   <img
                     src={`/${feature.icon}`}
                     alt={feature.title}
-                    className="h-12 w-12 mx-auto lg:mx-0"
+                    className="h-12 w-12 mx-auto xl:mx-0"
                   />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-2">
