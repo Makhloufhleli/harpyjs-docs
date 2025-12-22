@@ -163,13 +163,18 @@ export default function DashboardLayout({
                         <li key={item.id}>
                           <Link
                             href={item.href}
-                            className={`block text-sm ${
+                            className={`flex items-center justify-between text-sm ${
                               (item as { active?: boolean }).active === true
                                 ? 'text-amber-600 bg-amber-50 font-semibold'
                                 : 'text-slate-600'
                             } hover:text-amber-600 hover:bg-amber-50 px-2 py-1.5 rounded transition-colors`}
                           >
-                            {item.title}
+                            <span>{item.title}</span>
+                            {(item as { badge?: string }).badge && (
+                              <span className="inline-block px-1.5 py-0.5 text-[10px] font-bold bg-red-500 text-white rounded uppercase">
+                                {(item as { badge?: string }).badge}
+                              </span>
+                            )}
                           </Link>
                         </li>
                       ))}

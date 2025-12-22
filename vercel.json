@@ -14,6 +14,26 @@
       "use": "@vercel/static"
     },
     {
+      "src": "dist/fastify-logo.png",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "dist/nestjs-logo.png",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "dist/react-logo.png",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "dist/shadcn-ui-logo.png",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "dist/images.webp",
+      "use": "@vercel/static"
+    },
+    {
       "src": "dist/twitter-card.png",
       "use": "@vercel/static"
     },

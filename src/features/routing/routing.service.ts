@@ -10,7 +10,7 @@ export class RoutingService {
   registerNavigation(navigationService: NavigationRegistry) {
     // Ensure the `core-concepts` section exists. We'll give it an explicit
     // order of `1` so it appears after the Getting Started section (which
-    // we register with `order: 0` below).
+    // has order: 0).
     if (!navigationService.getSection('core-concepts')) {
       navigationService.registerSection({
         id: 'core-concepts',
@@ -25,6 +25,7 @@ export class RoutingService {
       id: 'routing',
       title: 'Routing',
       href: '/docs/routing',
+      order: 10, // First item in core-concepts
     });
   }
 }

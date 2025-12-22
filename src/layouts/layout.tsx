@@ -130,8 +130,9 @@ export default function DefaultLayout({
           </div>
         </header>
 
+        {/* Main content - wrapped in a container for SPA updates */}
         <main id="body" className="min-h-screen bg-white relative z-10">
-          {children}
+          <div id="__harpy_page_content">{children}</div>
         </main>
 
         {/* Footer */}

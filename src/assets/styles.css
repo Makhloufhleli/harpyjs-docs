@@ -9,6 +9,18 @@
   }
 }
 
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 /* Define the custom utility */
 @utility animate-border-spin {
   animation: border-spin 7s linear infinite;
